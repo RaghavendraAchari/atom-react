@@ -1,0 +1,36 @@
+button{
+    --button-border-radius: 10px 0 0 10px;
+    --button-stroke-color: #00747C;
+    --button-text-color: #00747C;
+    --button-bg-color: #FFFFFF;
+
+    --button-text-color-hover: #FFFFFF;
+    --button-bg-color-hover:#00747C ;
+
+    padding: var(--padding-small) var(--padding);
+    font-size: var(--font-size);
+    border-radius: var(--button-border-radius);
+    font-weight: 500;
+    border: 1px solid var(--button-stroke-color);
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    /* line-height: var(--line-height); */
+}
+button svg{
+    fill: var(--button-text-color);
+    margin-left: var(--margin-small);
+}
+button:hover{
+    cursor: pointer;
+    background-color: var(--button-bg-color-hover);
+    color: var(--button-text-color-hover);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.748);
+    
+}
+button:hover svg{
+    fill: var(--button-text-color-hover);
+}

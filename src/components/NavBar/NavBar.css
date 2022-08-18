@@ -1,0 +1,33 @@
+header{
+    width: 100%;
+    height: var(--nav-height);
+    border: 1px solid rgba(0, 0, 0, 0.195);
+}
+.nav-wrapper{
+    height: 100%;
+    margin: 0 var(--margin) 0 var(--margin);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.brand-name{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: var(--brand-font-size);
+    height: 100%;
+    line-height: 24px;
+}
+.brand-name img{
+    margin-right: 8px;
+    height: 50%;
+}
+
+nav a{
+    text-decoration: none;
+    color: black;
+    font-size: var(--nav-font-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

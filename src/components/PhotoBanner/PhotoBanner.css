@@ -1,0 +1,30 @@
+.photoBanner{
+    height: calc(100vh - var(--nav-height));
+    background-image: url("./PhotoBanner.jpg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 75%;
+    background-clip: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: var(--padding);
+    color: white;
+}
+.photoBanner .contents{
+    width: 100%;
+    background-color: rgba(52, 52, 52, 0.249);
+    position: relative;
+    bottom: 4vh;
+    border-radius: 5px;
+    padding: var(--padding) var(--padding);
+}
+h1,p, .button-wrapper{
+    padding: var(--padding-small);
+}
+.button-wrapper{
+    width: 100%;
+
+}
+

@@ -1,13 +1,85 @@
-body {
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --padding:16px;
+  --padding-small:8px;
+  --font-size: 16px;
+  --nav-font-size: 14px;
+  --brand-font-size: 20px;
+  --line-height:24px;
+
+  --nav-height:9vh;
+  --nav-height-mobile:8vh;
+  --margin:16px;
+  --margin-small:8px;
+  --margin-mobile: 16px;
+
+  --h1-font-size:68px;
+  --h1-line-height:72px;
+
+  
+  
+}
+
+
+@media only screen and (max-width: 480px) {
+	:root{
+    --brand-font-size: 16px;
+    --margin: var(--margin-mobile);
+    --nav-height: var(--nav-height-mobile);
+    --padding:16px;
+
+    --h1-font-size:42px;
+    --h1-line-height:48px;
+    
+  --nav-font-size: 14px;
+  }
+}
+/* Extra Small Devices, Phones
+@media only screen and (min-width: 480px) {
+	
+} */
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+	
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+	
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+	
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }
