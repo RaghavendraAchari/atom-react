@@ -1,5 +1,6 @@
 import "./ArtBanner.css";
 import ActionButton from "../ActionButton/ActionButton";
+
 function ArtBanner() {
   return (
     <div className="artBanner">
@@ -10,7 +11,7 @@ function ArtBanner() {
           times and also on normal times.
         </p>
         <div className="button-wrapper">
-          <ActionButton text="Explore More"></ActionButton>
+          <ActionButton text="Explore More" showImage="true"></ActionButton>
         </div>
       </div>
     </div>

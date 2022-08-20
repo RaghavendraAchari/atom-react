@@ -28,9 +28,14 @@ button:hover{
     cursor: pointer;
     background-color: var(--button-bg-color-hover);
     color: var(--button-text-color-hover);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.748);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.548);
     
 }
 button:hover svg{
     fill: var(--button-text-color-hover);
+}
+button:focus{
+    transform: scale(0.97);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.748);
+    
 }

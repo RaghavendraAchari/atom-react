@@ -2,7 +2,7 @@
     margin: 10vh 0;
     padding: 10vh var(--padding);
     height: 70vh;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(51, 67, 99);
     text-align: center;
     align-content: space-around;
     justify-content: space-around;
@@ -29,6 +29,7 @@
 .aboutMe .wrapper .photo-container .photo{
     width: 50%;
     height: 50%;
+    padding: var(--margin-small);
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.418);
     border-radius: 10px;
@@ -43,21 +44,28 @@
     height: 90%;
     position: absolute;
     right: 0;
+    color: rgba(27, 38, 58, 0.789) ;
     background-color: #F8F5E6;
     text-align: center;
     padding: var(--padding) calc(70%/4);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.449);
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .aboutMe h1{
-    font-weight: normal;
+    font-weight: 700;
     font-size: 48px;
+    line-height: 52px;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.448);
     
 }
 .aboutMe p.name{
-    font-weight: 700;
+    font-weight: 800;
     font-size: 24px;
+    line-height: 32px;
 }
 
 

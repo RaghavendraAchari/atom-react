@@ -1,6 +1,7 @@
 .photoBanner{
+    margin-top: var(--nav-height);
     height: calc(100vh - var(--nav-height));
-    background-image: url("./PhotoBanner.jpg") ;
+    background-image: url("../../../public/assets/PhotoBanner.jpg") ;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center 75%;
@@ -16,12 +17,23 @@
     width: 100%;
     background-color: rgba(52, 52, 52, 0.249);
     position: relative;
-    bottom: 4vh;
     border-radius: 5px;
     padding: var(--padding) var(--padding);
+    animation: slide-up 0.7s ease-in forwards;
+}
+@keyframes slide-up {
+    0%{
+        bottom: -4vh;
+    }
+    100%{
+        bottom: 4vh;
+    }
 }
 h1,p, .button-wrapper{
     padding: var(--padding-small);
+}
+p{
+    line-height: 24px;
 }
 .button-wrapper{
     width: 100%;

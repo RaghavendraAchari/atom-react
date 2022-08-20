@@ -16,9 +16,9 @@ class NavBar extends React.Component {
             {this.state.brandName}
           </div>
           <nav>
-            <a href="#contactme">
+            <a href="#AboutMe">
               Contact Me
-              <MaterialSymbolsContactsRounded style={{ margin: "0 4px" }} />
+              <MaterialSymbolsContactsRounded id="contactIcon" />
             </a>
           </nav>
         </div>

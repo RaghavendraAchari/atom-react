@@ -19,7 +19,7 @@ class PhotoBanner extends React.Component {
             personally like. Hope you would find it interesting.
           </p>
           <div className="button-wrapper">
-            <ActionButton text="Explore More"></ActionButton>
+            <ActionButton text="Explore More" showImage="true"></ActionButton>
           </div>
         </div>
       </div>
