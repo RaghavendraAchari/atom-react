@@ -1,0 +1,14 @@
+.card{
+    width: 100%;
+    display: grid;
+    grid-template-areas: "text photo";
+    gap: 5px;
+}
+.card-text-content{
+    grid-area: text;
+}
+
+.card-photo-content{
+    grid-area: photo;
+
+}

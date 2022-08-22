@@ -10,20 +10,40 @@ class Footer extends React.Component {
           <p>Connect To Me</p>
         </div>
         <div className="link-container">
-          <a href="http://linkedin.com/in/raghavendraachari">
+          <a
+            href="http://linkedin.com/in/raghavendraachari"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <JamLinkedinCircle />
           </a>
 
-          <a href="http://github.com/RaghavendraAchari">
+          <a
+            href="http://github.com/RaghavendraAchari"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <JamGithubCircle />
           </a>
-          <a href="http://twitter.com/in/raghavendraachari">
+          <a
+            href="http://twitter.com/raghav_achari"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <JamTwitterCircle />
           </a>
-          <a href="http://instagram.com/raghav_achari2">
+          <a
+            href="http://instagram.com/raghav_achari2"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <JamInstagram />
           </a>
-          <a href="mailto:raghav.achari.l@gmail.com">
+          <a
+            href="mailto:raghav.achari.l@gmail.com"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <JamGoogleCircle />
           </a>
         </div>
