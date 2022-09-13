@@ -8,7 +8,7 @@ footer{
     justify-content: space-around;
     overflow: hidden;
     background-color: rgba(212, 212, 212, 0.72);
-
+    grid-area: footer;
 }
 footer .subtitle{
     text-align: center;
@@ -44,13 +44,19 @@ a svg{
     margin-top: var(--margin-small) ;
     text-align: center;
     width: 100%;
-    background-color: rgba(82, 82, 82, 0.727);
+    background-color: rgba(147, 147, 147, 0.589);
     font-size: 14px;
+}
+.copyright p{
+    font-weight: bold;
+    opacity: 0.75;
+    font-size: 13px;
+    line-height: 24px;
 }
 .quick-links p{
     width: 100%;
     text-align: center;
-    font-size: 16px;
+    font-size: var(--font-size);
     line-height: 24px;
     font-weight: 700;
     opacity: 0.7;
@@ -64,4 +70,10 @@ a svg{
 }
 footer .no-border{
     border-bottom: none;
+}
+
+@media only screen and (max-width: 480px){
+    .copyright p{
+        font-size: 12px;
+    }
 }

@@ -11,7 +11,12 @@ function ArtBanner() {
           times and also on normal times.
         </p>
         <div className="button-wrapper">
-          <ActionButton text="Explore More" showImage="true"></ActionButton>
+          <ActionButton
+            to="/art"
+            text="Explore More"
+            showImage={true}
+            imageType="Art"
+          ></ActionButton>
         </div>
       </div>
     </div>

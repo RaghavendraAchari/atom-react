@@ -13,10 +13,16 @@ function AboutMe() {
             music.
           </p>
 
-          <ActionButton text="Know More" showImage="false" />
+          <ActionButton text="Know More" showImage={false} />
         </div>
         <div className="photo-container">
-          <img src="" className="photo" alt="dev"></img>
+          <div className="photo">
+            <img
+              src="/assets/programming-g23b1f4e10_640.jpg"
+              alt="dev"
+              width="100%"
+            />
+          </div>
         </div>
       </div>
     </div>

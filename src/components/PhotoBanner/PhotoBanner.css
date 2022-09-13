@@ -1,5 +1,4 @@
 .photoBanner{
-    margin-top: var(--nav-height);
     height: calc(100vh - var(--nav-height));
     background-image: url("../../../public/assets/PhotoBanner.jpg") ;
     background-size: cover;

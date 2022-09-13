@@ -1,11 +1,12 @@
 header{
     width: 100%;
     height: var(--nav-height);
-    border: 1px solid rgba(0, 0, 0, 0.195);
-    position: fixed;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.195);
+    position: sticky;
     top: 0;
     background-color: white;
     z-index: 9999;
+    grid-area: header;
 }
 #contactIcon{
     margin: 0 4px ;
@@ -19,19 +20,35 @@ header{
     align-items: center;
     justify-content: space-between;
 }
-.brand-name{
+.brandwrapper{
     display: flex;
     align-items: center;
     font-weight: 600;
     font-size: var(--brand-font-size);
     height: 100%;
     line-height: 24px;
+
+    #brandname{
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        .name{
+            font-weight: 500;
+
+            display: block;
+            font-size: var(--sub-brand-font-size);
+        }
+    }
 }
-.brand-name img{
+.brandwrapper img{
     margin-right: 8px;
     height: 50%;
 }
-
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 nav a{
     text-decoration: none;
     color: black;
@@ -39,4 +56,5 @@ nav a{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: var(--margin-small);
 }

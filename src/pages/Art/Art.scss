@@ -1,0 +1,23 @@
+.art-page{
+    padding: var(--margin);
+    height: 100%;
+    width: 60em;
+    margin: 0 auto;
+}
+.no-items{
+    height: 40vh;
+    display: grid;
+    place-content: center;
+    p{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .art-page{
+        padding: var(--margin);
+        height: 100%;
+        width: 100%;
+    }
+
+}

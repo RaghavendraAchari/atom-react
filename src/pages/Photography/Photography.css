@@ -1,3 +1,106 @@
+
+
 .container{
-    margin: var(--nav-height) var(--margin);
+    background-color: rgba(225, 225, 225, 0.218);
+}
+.common-grid{
+    display: grid;
+    grid-template-areas: "heading heading" "aside main";
+    grid-auto-columns: 1fr 3fr;
+    grid-auto-flow: column;
+    margin-inline: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.24);
+    background-color: white;
+    justify-content: center;
+}
+.title div.line{
+    border-bottom: 0.5px solid rgba(55, 55, 55, 0.256);
+    
+}
+aside{
+    grid-area: aside;
+    padding-inline: var(--margin);
+    border-right: 0.5px solid rgba(55, 55, 55, 0.256);
+}
+main{
+    grid-area: main;
+    padding: var(--margin);
+    height: calc(100vh - var(--nav-height));
+    overflow: auto;
+}
+
+
+.title{
+    grid-area: heading;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100%;
+    align-self: start;
+}
+
+.title h3{
+    margin: var(--margin);
+    height: 4vh;  
+    display: flex;
+    
+    align-items: center; 
+}
+.filter-title{
+    padding: var(--margin-small);
+    cursor: pointer;
+}
+ul{
+    transition: all 1s;
+}
+ul li{
+    list-style: none;
+    cursor: pointer;
+}
+
+.filter-list .filter-item:hover{
+    background-color: rgba(250, 235, 215, 0.6);
+    border-radius: 10px;
+}
+.filter-list .filter-item.active{
+    background-color: antiquewhite;
+    border-radius: 10px;
+    box-shadow: 0 2px 7px  rgba(0, 0, 0, 0.068);
+
+}
+
+@media only screen and (max-width: 480px){
+    .common-grid{
+        grid-template-areas: "heading"
+        "main"
+        "aside"
+        ;
+        margin: 0;
+    }
+    aside{
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: 0.5px solid rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        width: 100%;
+        background-color: white;
+        border-right: none;
+        border-bottom: 0.5px solid rgba(55, 55, 55, 0.256);;
+    
+    }
+    main{
+        width: inherit;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+    main::-webkit-scrollbar{
+        width: 4px;
+    }
+    .title h3{
+        font-size: 16px;
+        margin: var(--margin-small) var(--margin);
+    }
 }

@@ -29,14 +29,14 @@
 .aboutMe .wrapper .photo-container .photo{
     width: 50%;
     height: 50%;
-    padding: var(--margin-small);
-    background-color: white;
+    padding: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.418);
     border-radius: 10px;
-    background-image: url("../../../public/assets/programming-g23b1f4e10_640.jpg");
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: white;
+    aspect-ratio: 2/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .aboutMe .wrapper .main-content{

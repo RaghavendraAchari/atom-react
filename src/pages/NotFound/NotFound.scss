@@ -1,0 +1,34 @@
+.content{
+    padding: var(--margin);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50vh;
+    background-color: rgba(222, 255, 243, 0.567);
+
+    .notfound{
+        
+        background-color: white;
+        border-radius: 5px;
+        padding: var(--padding);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.282);
+    }
+    .title{
+        text-align: center;
+        font-weight: 200;
+    }
+    .sub-title{
+        text-align: center;
+
+        color: rgb(54, 54, 81);
+    }
+}
+@media only screen and (max-width: 480px){
+    .content{
+        .title{
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+}

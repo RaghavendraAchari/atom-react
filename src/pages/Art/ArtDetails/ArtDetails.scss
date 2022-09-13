@@ -1,0 +1,25 @@
+#art-details-page{
+    padding: var(--margin);
+    width: 60em;
+    margin: 0 auto;
+
+    .date{
+        opacity: 0.7;
+        font-size: small;
+        margin-top: var(--margin);
+    }
+    .short-desc{
+        padding-inline: 0;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    #art-details-page{
+        padding: var(--margin);
+        width: 100%;
+        .date{
+            margin-top: var(--margin-small);
+
+        }
+    }
+}

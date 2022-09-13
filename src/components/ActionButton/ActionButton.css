@@ -1,12 +1,11 @@
-button{
+.button{
     --button-border-radius: 10px 0 0 10px;
     --button-stroke-color: #00747C;
     --button-text-color: #00747C;
     --button-bg-color: #FFFFFF;
-
     --button-text-color-hover: #FFFFFF;
     --button-bg-color-hover:#00747C ;
-
+    font-family: inherit;
     padding: var(--padding-small) var(--padding);
     font-size: var(--font-size);
     border-radius: var(--button-border-radius);
@@ -19,22 +18,28 @@ button{
     justify-content: center;
     transition: all 0.2s;
     /* line-height: var(--line-height); */
+    width: fit-content;
+    text-decoration: none;
 }
-button svg{
+.button svg{
     fill: var(--button-text-color);
     margin-left: var(--margin-small);
+    height: 24px;
+    width: 24px;
+    transition: all 0.2s;
+
 }
-button:hover{
+.button:hover{
     cursor: pointer;
     background-color: var(--button-bg-color-hover);
     color: var(--button-text-color-hover);
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.548);
     
 }
-button:hover svg{
+.button:hover svg{
     fill: var(--button-text-color-hover);
 }
-button:focus{
+.button:focus{
     transform: scale(0.97);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.748);
     

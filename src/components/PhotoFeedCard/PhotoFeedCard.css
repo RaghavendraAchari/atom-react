@@ -3,12 +3,105 @@
     display: grid;
     grid-template-areas: "text photo";
     gap: 5px;
+    border: 0.5px solid rgba(49, 49, 49, 0.185);
+    border-radius: 5px;
+    margin-bottom: var(--margin);
+    padding: var(--padding);
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.18);
+}
+.card:hover{
+    box-shadow: var(--card-shadow);
 }
 .card-text-content{
     grid-area: text;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+.card-text-content p, .card-text-content h4{
+    padding: 0;
+    margin:var(--margin-small) 0 ;
+}
+
+.card-text-content p.desc{
+    max-height: calc(24px * 4);
+    overflow: hidden;
+    position: relative;
+    text-align: justify;
+}
+p.date{
+    opacity: 0.7;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* .card-text-content p.desc::before{
+    content: "...";
+    position: absolute;
+} */
 
 .card-photo-content{
     grid-area: photo;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+.card-photo-content .photos{
+    display: flex;
+}
+.card-photo-content p{
+    opacity: 0.8;
+    padding: 0;
+    font-size: 14px;
+    margin-inline:4px ;
+}
+.card-photo-content .photo-holder{
+    height: 20vh;
+    width: 10vw;
+    margin: 8px 4px;
+    border: 0.5px solid rgba(0, 0, 0, 0.186);
+    border-radius: 3px;
+}
 
+.card .button{
+    font-weight: 400;
+    padding: 6px var(--margin-small);
+    font-size: 14px;
+    justify-self: flex-end;
+}
+
+@media only screen and (max-width: 480px){
+    .card{
+        grid-template-areas: "text" "photo";
+        width: 100%;
+    }
+    
+    .card-text-content{
+        grid-area: text;
+    }
+    .card-photo-content .photo-holder{
+        height: 10vh;
+        width: 20vw;
+    }
+    .card-photo-content .photos{
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-photo-content{
+        grid-area: photo;
+    
+    }
+    .card-photo-content p{
+        text-align: center;
+    }
+    .button-container{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1em;
+    }
 }
