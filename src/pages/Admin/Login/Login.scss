@@ -1,0 +1,74 @@
+.border-bottom{
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+}
+.login-container{
+    width: 60em;
+    margin: 16px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+        
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(128, 128, 128, 0.447);
+    border-radius: 5px;
+
+}
+.group{
+    margin: 0 0 var(--margin) 0;
+    label{
+        display: block;
+    }
+    input{
+        font-family: inherit;
+        margin-top: var(--margin-small);
+        font-size: 16px;
+        padding: 8px;
+        display: block;
+        border-radius: 3px;
+        border: 1px solid rgba(0, 0, 0, 0.288);
+        // box-shadow: 0 2px 2px rgba(128, 128, 128, 0.447);
+        width: 100%;
+        &:focus{                
+            outline: 0.5px solid rgba(0, 0, 0, 0.356);
+        }
+    }
+    textarea{
+        font-family: inherit;
+        padding: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.288);
+        width: 100%;
+        border-radius: 3px;
+        height: 10em;
+        resize: vertical;
+        &:focus{                
+            outline: 0.5px solid rgba(0, 0, 0, 0.356);
+        }
+    }
+    .error{
+        background-color: rgba(255, 0, 0, 0.201);
+        width: 100%;
+        border-radius: 3px;
+        padding: 0 2px;
+        font-weight: 500;
+        font-size: 11px;
+        text-align: center;
+        color: rgba(255, 0, 0, 0.568);
+    }
+}
+
+@media only screen and (max-width:480px){
+
+    .login-container{
+        width: 100%;
+        margin: 16px 0;
+        padding: 0 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+}

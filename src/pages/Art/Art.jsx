@@ -32,7 +32,6 @@ function Art() {
           return mapData(element);
         });
         setArtList(list);
-        // console.log(res.data);
       });
 
       return () => (useEffectRan.current = true);

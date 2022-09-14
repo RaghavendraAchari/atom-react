@@ -1,0 +1,15 @@
+.uploading{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-content: center;
+    background-color: rgba(255, 255, 255, 0.589);
+    .loader{
+        height: 150px;
+        width: 150px;
+        
+    }
+}

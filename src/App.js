@@ -9,6 +9,8 @@ import Photography from './pages/Photography/Photography';
 import NotFound from "./pages/NotFound/NotFound";
 import PhotoDetails from './pages/Photography/PhotoDetails/PhotoDetails';
 import ArtDetails from './pages/Art/ArtDetails/ArtDetails';
+import Login from './pages/Admin/Login/Login';
+import Operations from './pages/Admin/Operations/Dashboard';
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
         <Route path="/photography/:id" element = {<PhotoDetails />}/>
         <Route path="/art" element = {<Art />}/>
         <Route path="/art/:id" element = {<ArtDetails />}/>
+        <Route path="/admin/operations" element = {<Operations />}/>
+        <Route path="/admin" element = {<Login />}/>
         <Route path="/" element = {<Home />}/>
         <Route path="*" element = {<NotFound />} />
       </Routes>

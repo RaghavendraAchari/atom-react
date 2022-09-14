@@ -1,0 +1,56 @@
+#operations-page{
+    width: 60em;
+    margin: 8px auto;
+    .type-select{
+        width: 100%;
+        select{
+            box-sizing: border-box;
+            border: none;
+            border-radius: 3px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+            background-color: rgba(128, 128, 128, 0.145);
+            margin:  8px 0;
+            padding:  8px 0;
+            width: 100%; 
+            font-weight: 600;
+            &:focus{
+                border: none;
+                outline: 2px solid rgba(0, 0, 0, 0.4);
+            }
+            option{
+                border: none;
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+    .art-section{
+        h5{
+            text-align: left;
+            margin: 8px 0 8px 0;
+        }
+    }
+    form{
+        padding: 16px; 
+        &:focus{
+            border: 1px solid red;
+        }      
+    }
+}
+
+
+@media only screen and (max-width:480px) {
+    #operations-page{
+        width: 100%;
+        padding: 0 var(--margin-small);
+        .type-select{
+            width: 100%;
+            select{
+                width: 100%;
+                option{
+                    border: none;
+                }
+            }
+        }
+    }
+}

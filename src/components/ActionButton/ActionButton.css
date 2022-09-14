@@ -17,7 +17,6 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
-    /* line-height: var(--line-height); */
     width: fit-content;
     text-decoration: none;
 }

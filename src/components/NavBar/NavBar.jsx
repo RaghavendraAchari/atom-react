@@ -2,6 +2,7 @@ import "./NavBar.scss";
 import React from "react";
 import { MaterialSymbolsContactsRounded } from "../../assets/ImageComponents/ContactImage";
 import { Link, Route, Routes } from "react-router-dom";
+import { USER_TOKEN } from "../../services/authService";
 // import {useMatch} from "react-router-dom";
 
 function NavBar() {
@@ -40,7 +41,25 @@ function NavBar() {
                   <MaterialSymbolsContactsRounded id="contactIcon" />
                 </a>
               }
-            ></Route>
+            />
+            <Route
+              path="/admin/*"
+              element={
+                <Link to="">
+                  <strong id="art">
+                    {sessionStorage.getItem(USER_TOKEN) ? "Admin" : ""}
+                  </strong>
+                </Link>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <Link to="/">
+                  <strong>Home</strong>
+                </Link>
+              }
+            />
           </Routes>
         </nav>
       </div>
