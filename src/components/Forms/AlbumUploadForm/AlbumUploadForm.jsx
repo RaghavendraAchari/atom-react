@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { useState } from "react";
+import { postAlbumFeed } from "../../../services/photoServices";
 import "./AlbumUploadForm.scss";
 
 function AlbumUploadForm() {
@@ -15,6 +16,22 @@ function AlbumUploadForm() {
   const [dateFormat, setDate] = useState(
     Intl.DateTimeFormat("fr-CA", options).format(date)
   );
+  const [albumDate, setalbumDate] = useState(
+    Intl.DateTimeFormat("fr-CA", options).format(date)
+  );
+
+  function handleAddPhoto() {
+    const photo = {};
+    photo["thumbnailUrl"] = thumbnailUrl;
+    photo["originalFileUrl"] = originalFileUrl;
+    photo["date"] = new Date(Date.parse(dateFormat)).toISOString();
+
+    setPhotos((prev) => [...prev, photo]);
+    setDate(Intl.DateTimeFormat("fr-CA", options).format(date));
+    setOriginalFileUrl("");
+    setThumbnailUrl("");
+    photoFormRef.current.style.border = "";
+  }
 
   const photoFormRef = useRef(null);
   function handleSubmit(e) {
@@ -30,21 +47,23 @@ function AlbumUploadForm() {
     }
 
     const form = new FormData(e.target);
-    form.forEach((e) => console.log(e));
-    console.log({ photos: photos });
-  }
+    const date = new Date(Date.parse(albumDate)).toISOString();
+    const title = form.get("title");
+    const description = form.get("shortDescription");
+    const details = form.get("description");
+    const uploadData = {
+      date,
+      title,
+      description,
+      photos,
+      details,
+    };
 
-  function handleAddPhoto() {
-    const photo = {};
-    photo["thumbnailUrl"] = thumbnailUrl;
-    photo["originalFileUrl"] = originalFileUrl;
-    photo["date"] = new Date(Date.parse(dateFormat)).toISOString();
-
-    setPhotos((prev) => [...prev, photo]);
-    setDate(Intl.DateTimeFormat("fr-CA", options).format(date));
-    setOriginalFileUrl("");
-    setThumbnailUrl("");
-    photoFormRef.current.style.border = "";
+    postAlbumFeed(uploadData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   }
 
   function deletePhoto(index) {
@@ -133,6 +152,21 @@ function AlbumUploadForm() {
         <div className="group">
           <label htmlFor="title"> Title :</label>
           <input name="title" type="text" required />
+        </div>
+        <div className="group">
+          <label htmlFor="albumDate">Date :</label>
+          <input
+            name="albumDate"
+            type="date"
+            value={albumDate}
+            onChange={(e) =>
+              setalbumDate(
+                Intl.DateTimeFormat("fr-CA", options).format(
+                  e.target.valueAsDate
+                )
+              )
+            }
+          />
         </div>
         <div className="group">
           <label htmlFor="shortDescription"> Short Description :</label>

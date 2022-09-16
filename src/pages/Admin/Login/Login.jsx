@@ -2,7 +2,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import LoadingWindow from "../../../components/LoadingWindow/LoadingWindow";
-import { authenticate, USER_TOKEN } from "../../../services/authService";
+import {
+  authenticate,
+  USER_TOKEN,
+  validateUser,
+} from "../../../services/authService";
 
 import "./Login.scss";
 
@@ -24,6 +28,7 @@ function Login(props) {
     authenticate(username, password)
       .then((res) => {
         sessionStorage.setItem(USER_TOKEN, res.data.jwtToken);
+        setSigningIn(false);
         navigate("/admin/operations");
       })
       .catch((res) => {
@@ -35,7 +40,15 @@ function Login(props) {
   useEffect(() => {
     const token = sessionStorage.getItem(USER_TOKEN);
     if (token !== null && token !== undefined) {
-      navigate("/admin/operations");
+      setSigningIn(true);
+      validateUser(token)
+        .then((res) => {
+          if (res.status === 200) {
+            navigate("/admin/operations");
+            setSigningIn(false);
+          }
+        })
+        .catch();
     }
   }, []);
   return (

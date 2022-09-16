@@ -24,4 +24,6 @@ export async function uploadNewArt(data){
      });
 }
 
+
+
  

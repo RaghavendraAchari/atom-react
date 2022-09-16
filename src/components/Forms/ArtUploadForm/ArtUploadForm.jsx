@@ -5,7 +5,14 @@ import "./ArtUploadForm.scss";
 
 function ArtUploadForm() {
   const [isUploading, setUploading] = useState(false);
-
+  // const options = {
+  //   year: "numeric",
+  //   month: "2-digit",
+  //   day: "2-digit",
+  // };
+  // const [date] = useState(
+  //   Intl.DateTimeFormat("fr-CA", options).format(Date.now())
+  // );
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -23,8 +30,8 @@ function ArtUploadForm() {
       date: new Date(date).toISOString(),
     };
     form.reset();
-
     setUploading(true);
+
     uploadNewArt(data)
       .then((res) => {
         setUploading(false);
