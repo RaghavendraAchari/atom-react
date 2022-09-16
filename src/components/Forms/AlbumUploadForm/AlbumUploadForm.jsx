@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useState } from "react";
 import { postAlbumFeed } from "../../../services/photoServices";
+import LoadingWindow from "../../LoadingWindow/LoadingWindow";
 import "./AlbumUploadForm.scss";
 
 function AlbumUploadForm() {
@@ -19,6 +20,8 @@ function AlbumUploadForm() {
   const [albumDate, setalbumDate] = useState(
     Intl.DateTimeFormat("fr-CA", options).format(date)
   );
+
+  const [isUploading, setUploading] = useState(false);
 
   function handleAddPhoto() {
     const photo = {};
@@ -59,10 +62,12 @@ function AlbumUploadForm() {
       details,
     };
 
+    setUploading(true);
     postAlbumFeed(uploadData)
       .then((res) => {
-        form.reset();
+        e.target.reset();
         setPhotos([]);
+        setUploading(false);
       })
       .catch((err) => console.log(err));
   }
@@ -182,6 +187,14 @@ function AlbumUploadForm() {
           <input type="submit" value="Submit" />
         </div>
       </form>
+
+      {isUploading && (
+        <div className="uploading">
+          <div className="loader">
+            <LoadingWindow />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
