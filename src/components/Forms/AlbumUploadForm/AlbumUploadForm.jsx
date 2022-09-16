@@ -61,7 +61,8 @@ function AlbumUploadForm() {
 
     postAlbumFeed(uploadData)
       .then((res) => {
-        console.log(res);
+        form.reset();
+        setPhotos([]);
       })
       .catch((err) => console.log(err));
   }
