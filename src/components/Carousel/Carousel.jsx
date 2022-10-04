@@ -27,7 +27,11 @@ function Carousel(props) {
             }
             key={index}
           >
-            {/* <img src={element.thumbNailUrl} alt={"Album Photo" + index} /> */}
+            <img src={element.originalFileUrl} alt={"Album Photo" + index} />
+            <p>
+              *Only high quality images are shown here. It might take time to
+              load.
+            </p>
           </div>
         );
       })}

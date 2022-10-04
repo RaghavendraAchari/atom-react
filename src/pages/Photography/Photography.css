@@ -58,7 +58,16 @@ ul li{
     list-style: none;
     cursor: pointer;
 }
-
+.error{
+    text-align: center;
+    color: red;
+    font-weight: 600;
+}
+#list-end button{
+    font-size: 12px;
+    margin: 8px auto;
+    padding: var(--padding-small);
+}
 .filter-list .filter-item:hover{
     background-color: rgba(250, 235, 215, 0.6);
     border-radius: 10px;

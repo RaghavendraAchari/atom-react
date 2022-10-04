@@ -4,8 +4,8 @@ import {getBaseURL} from './data';
 
 const BASE_URL = getBaseURL();
 
-export async function getAllPhotos(){
-    const url = BASE_URL + "/albumfeed";
+export async function getAllPhotos(pageNumber){
+    const url = BASE_URL + "/albumfeed/page/" + pageNumber;
     return await axios.get(url);
 }
 

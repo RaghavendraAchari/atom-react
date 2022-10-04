@@ -20,7 +20,7 @@ function NavBar() {
             <Route
               path="/photography/*"
               element={
-                <Link to="/photography">
+                <Link to="/photography/">
                   <strong id="photography">Photography</strong>
                 </Link>
               }

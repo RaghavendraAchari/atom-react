@@ -6,7 +6,7 @@ import "./AlbumUploadForm.scss";
 
 function AlbumUploadForm() {
   const [photos, setPhotos] = useState([]);
-  const [thumbnailUrl, setThumbnailUrl] = useState("");
+  const [thumbNailUrl, setThumbnailUrl] = useState("");
   const [originalFileUrl, setOriginalFileUrl] = useState("");
   const date = new Date(Date.now());
   const options = {
@@ -25,15 +25,34 @@ function AlbumUploadForm() {
 
   function handleAddPhoto() {
     const photo = {};
-    photo["thumbnailUrl"] = thumbnailUrl;
+    photo["thumbNailUrl"] = thumbNailUrl;
     photo["originalFileUrl"] = originalFileUrl;
     photo["date"] = new Date(Date.parse(dateFormat)).toISOString();
 
-    setPhotos((prev) => [...prev, photo]);
-    setDate(Intl.DateTimeFormat("fr-CA", options).format(date));
-    setOriginalFileUrl("");
-    setThumbnailUrl("");
-    photoFormRef.current.style.border = "";
+    if (
+      !(thumbNailUrl.startsWith("https") || thumbNailUrl.startsWith("http"))
+    ) {
+      alert("Thumbnail link must start with either 'http://' or 'https://'");
+      photoFormRef.current["thumbNailUrl"].focus();
+      photoFormRef.current.scrollIntoView();
+    } else if (
+      !(
+        originalFileUrl.startsWith("https") ||
+        originalFileUrl.startsWith("http")
+      )
+    ) {
+      alert(
+        "Original file link must start with either 'http://' or 'https://'"
+      );
+      photoFormRef.current["originalFileUrl"].focus();
+      photoFormRef.current.scrollIntoView();
+    } else {
+      setPhotos((prev) => [...prev, photo]);
+      setDate(Intl.DateTimeFormat("fr-CA", options).format(date));
+      setOriginalFileUrl("");
+      setThumbnailUrl("");
+      photoFormRef.current.style.border = "";
+    }
   }
 
   const photoFormRef = useRef(null);
@@ -87,12 +106,14 @@ function AlbumUploadForm() {
         <div className="photos">
           {photos.length > 0 ? (
             photos.map((element, index) => (
-              <div key={index}>
-                <p className="selected-photos">
-                  {index + 1 + ". "}
-                  {element.originalFileUrl}{" "}
+              <div className="photo-row" key={index}>
+                <div className="selected-photo">
+                  <p className="link">
+                    {index + 1 + ". "} {element.originalFileUrl}{" "}
+                  </p>
                   <span onClick={() => deletePhoto(index)}>x</span>
-                </p>
+                </div>
+                <img src={element.thumbNailUrl} alt="Preview" />
               </div>
             ))
           ) : (
@@ -113,11 +134,15 @@ function AlbumUploadForm() {
       >
         <div className="photos-form">
           <div className="group">
-            <label htmlFor="thumbnailUrl">Thumnail Link (Low Res):</label>
+            <label htmlFor="thumbNailUrl">Thumnail Link (Low Res):</label>
             <input
-              name="thumbnailUrl"
+              id="thumbNailUrl"
+              name="thumbNailUrl"
               type="text"
-              value={thumbnailUrl}
+              pattern="https?://.+"
+              title="Enter a valid url"
+              placeholder="Low res link (must start with https://)"
+              value={thumbNailUrl}
               onChange={(e) => setThumbnailUrl(e.target.value)}
             />
           </div>
@@ -127,7 +152,11 @@ function AlbumUploadForm() {
             </label>
             <input
               name="originalFileUrl"
+              id="originalFileUrl"
               type="text"
+              pattern="https?://.+"
+              title="Enter a valid url"
+              placeholder="High res link (must start with https://)"
               value={originalFileUrl}
               onChange={(e) => setOriginalFileUrl(e.target.value)}
             />
@@ -157,7 +186,12 @@ function AlbumUploadForm() {
       <form onSubmit={handleSubmit}>
         <div className="group">
           <label htmlFor="title"> Title :</label>
-          <input name="title" type="text" required />
+          <input
+            name="title"
+            placeholder="Title to be displayed"
+            type="text"
+            required
+          />
         </div>
         <div className="group">
           <label htmlFor="albumDate">Date :</label>
@@ -176,12 +210,20 @@ function AlbumUploadForm() {
         </div>
         <div className="group">
           <label htmlFor="shortDescription"> Short Description :</label>
-          <textarea name="shortDescription" required></textarea>
+          <textarea
+            name="shortDescription"
+            placeholder="Short description of the album..."
+            required
+          ></textarea>
         </div>
 
         <div className="group">
           <label htmlFor="description"> Description :</label>
-          <textarea name="description" required></textarea>
+          <textarea
+            name="description"
+            placeholder="Full details about of the album..."
+            required
+          ></textarea>
         </div>
         <div className="group">
           <input type="submit" value="Submit" />

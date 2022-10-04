@@ -18,7 +18,7 @@ function FeedCard(props) {
         case "Photo":
           feedDetails.photos.forEach(async (id) => {
             const { data } = await getIndividualPhoto(id);
-
+            // console.log(data);
             setPhotoDetails((prev) => [...prev, data]);
           });
 
@@ -70,11 +70,14 @@ function FeedCard(props) {
   };
 
   const renderPhotos = () => {
-    const listOfImages = photoDetails.map((element, index) => (
-      <div key={element.id} className="photo-holder">
-        <img src={element.thumbNailUrl} alt={index} />
-      </div>
-    ));
+    const listOfImages = photoDetails.map((element, index) => {
+      // console.log(element);
+      return (
+        <div key={element.id} className="photo-holder">
+          <img src={element.thumbNailUrl} alt={index} />
+        </div>
+      );
+    });
     return listOfImages.slice(0, 3);
   };
 

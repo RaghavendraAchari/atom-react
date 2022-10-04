@@ -13,7 +13,7 @@ function AboutMe() {
             music.
           </p>
 
-          <ActionButton text="Know More" showImage={false} />
+          <ActionButton text="Know More" to="#AboutMe" showImage={false} />
         </div>
         <div className="photo-container">
           <div className="photo">

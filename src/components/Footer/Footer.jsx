@@ -56,6 +56,9 @@ class Footer extends React.Component {
             <Link className="quickLink" to="/art">
               Art
             </Link>
+            <Link className="quickLink" to="/admin">
+              Admin Login
+            </Link>
           </div>
         </div>
 

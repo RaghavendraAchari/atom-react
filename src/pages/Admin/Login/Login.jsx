@@ -48,7 +48,9 @@ function Login(props) {
             setSigningIn(false);
           }
         })
-        .catch();
+        .catch((e) => {
+          setSigningIn(false);
+        });
     }
   }, []);
   return (

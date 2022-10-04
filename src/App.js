@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/photography" element = {<Photography />}/>
+        <Route path="/photography/" element = {<Photography />}/>
         <Route path="/photography/:id" element = {<PhotoDetails />}/>
         <Route path="/art" element = {<Art />}/>
         <Route path="/art/:id" element = {<ArtDetails />}/>

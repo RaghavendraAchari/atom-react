@@ -54,6 +54,13 @@ function Operations(props) {
   //   }
   // }
 
+  function logout() {
+    if (token !== null && token !== undefined) {
+      sessionStorage.clear();
+      navigate("/admin");
+    }
+  }
+
   return (
     <div id="operations-page">
       <h3>Operations</h3>
@@ -67,81 +74,17 @@ function Operations(props) {
 
       <div className="operation-section">
         {type === "Art" && <ArtUploadForm />}
-        {type === "Album" && (
-          // <div className="art-section">
-          //   <h5>Add details of the album :</h5>
-
-          //   <form onSubmit={handleSubmit}>
-          //     <div className="group">
-          //       <label htmlFor="title"> Title :</label>
-          //       <input name="title" type="text" />
-          //     </div>
-          //     <div className="group">
-          //       <label htmlFor="shortDescription"> Short Description :</label>
-          //       <textarea name="shortDescription"></textarea>
-          //     </div>
-          //     <div className="group">
-          //       <label htmlFor="photos"> Photos :</label>
-
-          //       <div className="photos">
-          //         {selectedPhotos > 0 ? (
-          //           selectedPhotos.map((element) => (
-          //             <div>
-          //               <p>{element.originalFileLink}</p>
-          //             </div>
-          //           ))
-          //         ) : (
-          //           <div>
-          //             <p>No photos selected</p>
-          //           </div>
-          //         )}
-          //         <div className="photos-form">
-          //           <div className="group">
-          //             <label htmlFor="thumnailLink">
-          //               Thumnail Link (Low Res):
-          //             </label>
-          //             <input name="thumnailLink" type="text" />
-          //           </div>
-          //           <div className="group">
-          //             <label htmlFor="originalFileLink">
-          //               Original File Link (High Res) :
-          //             </label>
-          //             <input name="originalFileLink" type="text" />
-          //           </div>
-          //           <div className="group">
-          //             <label htmlFor="date">Date :</label>
-          //             <input name="date" type="date" />
-          //           </div>
-          //           <div className="group">
-          //             <input
-          //               type="button"
-          //               value="Add photo"
-          //               onClick={(e) => {
-          //                 console.log(e);
-          //                 e.preventDefault();
-          //               }}
-          //             />
-          //           </div>
-          //         </div>
-          //       </div>
-          //     </div>
-
-          //     <div className="group">
-          //       <label htmlFor="description"> Description :</label>
-          //       <textarea name="description"></textarea>
-          //     </div>
-          //     <div className="group">
-          //       <input name="title" type="submit" value="Submit" />
-          //     </div>
-          //   </form>
-          // </div>
-          <AlbumUploadForm />
-        )}
+        {type === "Album" && <AlbumUploadForm />}
         {type === "" && (
           <div>
             <p>Select a type to continue</p>
           </div>
         )}
+      </div>
+      <div className="group">
+        <button className="button" onClick={logout}>
+          Logout
+        </button>
       </div>
     </div>
   );

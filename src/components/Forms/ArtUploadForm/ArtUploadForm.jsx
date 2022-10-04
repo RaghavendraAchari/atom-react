@@ -48,17 +48,32 @@ function ArtUploadForm() {
       <form onSubmit={handleSubmit}>
         <div className="group">
           <label htmlFor="title"> Title :</label>
-          <input name="title" type="text" required />
+          <input
+            name="title"
+            placeholder="Title to be displayed"
+            type="text"
+            required
+          />
         </div>
         <div className="group">
           <label htmlFor="thumbnailLink"> Thumnail Link (Low Res):</label>
-          <input name="thumbnailLink" type="text" required />
+          <input
+            name="thumbnailLink"
+            placeholder="Low res link (must start with https://)"
+            type="text"
+            required
+          />
         </div>
         <div className="group">
           <label htmlFor="originalFileLink">
             Original File Link (High Res) :
           </label>
-          <input name="originalFileLink" type="text" required />
+          <input
+            name="originalFileLink"
+            placeholder="High res link (must start with https://)"
+            type="text"
+            required
+          />
         </div>
         <div className="group">
           <label htmlFor="description"> Description :</label>

@@ -6,33 +6,19 @@ import { getAllPhotos } from "../../services/photoServices";
 import LoadingWindow from "../../components/LoadingWindow/LoadingWindow";
 
 function Photography() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
   const [filteredItem, setFilteredItem] = useState("All");
   const [showFilter, toggleShowFilter] = useState(
     window.innerWidth <= 480 ? false : true
   );
+  const [error, setError] = useState("");
   const useEffectRan = useRef(false);
   const [feedList, setFeedList] = useState([]);
+
   useEffect(() => {
     if (useEffectRan.current === false) {
-      getAllPhotos()
-        .then((res) => {
-          const list = res.data.map((element) => {
-            const date = new Date(Date.parse(element.date));
-
-            return {
-              id: element.id,
-              date: date.toDateString(),
-              title: element.title,
-              description: element.description,
-              photos: element.photos,
-              details: element.details,
-            };
-          });
-          setFeedList(list);
-        })
-        .catch((e) => console.log(e));
-
-      // setTimeout(() => {}, 3000);
+      loadData(currentPage);
 
       return () => (useEffectRan.current = true);
     }
@@ -44,6 +30,30 @@ function Photography() {
     "Wildlife / Animals",
     "Architecture",
   ]);
+
+  function loadData(currentPage) {
+    getAllPhotos(currentPage)
+      .then((res) => {
+        setTotalPage(res.data.totalPages);
+        const list = res.data.albums.map((element) => {
+          const date = new Date(Date.parse(element.date));
+
+          return {
+            id: element.id,
+            date: date.toDateString(),
+            title: element.title,
+            description: element.description,
+            photos: element.photos,
+            details: element.details,
+          };
+        });
+        setFeedList((prev) => [...prev, ...list]);
+      })
+      .catch((e) => {
+        console.log(e);
+        setError("Could not load the data!");
+      });
+  }
 
   const handleFilterClick = (e) => {
     toggleShowFilter((prev) => !prev);
@@ -59,13 +69,15 @@ function Photography() {
     setFilteredItem(item);
   };
 
+  const handleLoadMore = () => {
+    if (currentPage >= totalPage) return;
+    loadData(currentPage + 1);
+    setCurrentPage(currentPage + 1);
+  };
+
   return (
     <div className="container">
       <div className="common-grid">
-        {/* <div className="title">
-          <h3>Photography</h3>
-          <div className="line"></div>
-        </div> */}
         <aside>
           <h4 className="filter-title" onClick={handleFilterClick}>
             Filters : {filteredItem}
@@ -102,7 +114,12 @@ function Photography() {
           ) : (
             <LoadingWindow showCaption={true} />
           )}
-          <div className="list-end"></div>
+          {error !== "" && <div className="error">{error}</div>}
+          <div id="list-end">
+            <button className="button" onClick={handleLoadMore}>
+              Load More
+            </button>
+          </div>
         </main>
       </div>
     </div>

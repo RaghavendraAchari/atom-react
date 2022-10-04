@@ -34,6 +34,7 @@ body {
   --padding:16px;
   --padding-small:8px;
   --font-size: 16px;
+  --input-font-size: 14px;
   --nav-font-size: 14px;
   --brand-font-size: 20px;
   --brand-font-line-height: 24px;
@@ -63,6 +64,8 @@ body {
     --margin: var(--margin-mobile);
     --nav-height: var(--nav-height-mobile);
     --padding:16px;
+  --input-font-size: 14px;
+
 
     --h1-font-size:42px;
     --h1-line-height:48px;

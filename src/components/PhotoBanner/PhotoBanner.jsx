@@ -16,7 +16,7 @@ function PhotoBanner(props) {
         </p>
         <div className="button-wrapper">
           <ActionButton
-            to="/photography"
+            to="/photography/"
             text="Explore More"
             showImage={true}
             imageType="Photo"
