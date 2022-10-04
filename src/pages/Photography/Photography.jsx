@@ -13,6 +13,7 @@ function Photography() {
     window.innerWidth <= 480 ? false : true
   );
   const [error, setError] = useState("");
+  const [fetchingData, setFetchingData] = useState(false);
   const useEffectRan = useRef(false);
   const [feedList, setFeedList] = useState([]);
 
@@ -32,6 +33,7 @@ function Photography() {
   ]);
 
   function loadData(currentPage) {
+    setFetchingData(true);
     getAllPhotos(currentPage)
       .then((res) => {
         setTotalPage(res.data.totalPages);
@@ -48,10 +50,12 @@ function Photography() {
           };
         });
         setFeedList((prev) => [...prev, ...list]);
+        setFetchingData(false);
       })
       .catch((e) => {
         console.log(e);
         setError("Could not load the data!");
+        setFetchingData(false);
       });
   }
 
@@ -101,7 +105,10 @@ function Photography() {
           )}
         </aside>
         <main>
-          {feedList.length > 0 ? (
+          {fetchingData === false && feedList.length === 0 && (
+            <div className="no-data">No data available</div>
+          )}
+          {feedList.length > 0 &&
             feedList.map((content) => {
               return (
                 <FeedCard
@@ -110,15 +117,16 @@ function Photography() {
                   feedType="Photo"
                 />
               );
-            })
-          ) : (
-            <LoadingWindow showCaption={true} />
-          )}
+            })}
+
+          {fetchingData === true && <LoadingWindow showCaption={true} />}
           {error !== "" && <div className="error">{error}</div>}
           <div id="list-end">
-            <button className="button" onClick={handleLoadMore}>
-              Load More
-            </button>
+            {feedList.length > 0 && fetchingData === false && (
+              <button className="button" onClick={handleLoadMore}>
+                Load More
+              </button>
+            )}
           </div>
         </main>
       </div>

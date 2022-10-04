@@ -3,8 +3,8 @@ const url = {
     development:"http://localhost:8080/api"
 }
 
-// let environment = "production";
- let environment = "development";
+let environment = "production";
+//  let environment = "development";
 
 const BASE_URL = url[environment];
 
