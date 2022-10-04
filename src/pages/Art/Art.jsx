@@ -12,7 +12,7 @@ function mapData(element) {
   return {
     id: element.id,
     originalFileLink: element.originalFileLink,
-    thumbNailUrl: element.thumbNailLink,
+    thumbNailUrl: element.thumbnailLink,
     date: new Date(Date.parse(element.date)).toDateString(),
     title: element.title,
     description: element.description,
@@ -28,7 +28,7 @@ function Art() {
     if (useEffectRan.current === false) {
       getArtList().then((res) => {
         setFetchingData(false);
-        const list = res.data.map((element, index) => {
+        const list = res.data.map((element) => {
           return mapData(element);
         });
         setArtList(list);
@@ -47,7 +47,7 @@ function Art() {
           <p>No items available to show right now</p>
         </div>
       ) : (
-        artList.map((element, index) => {
+        artList.map((element) => {
           return (
             <FeedCard key={element.id} feedType="Art" feedDetails={element} />
           );

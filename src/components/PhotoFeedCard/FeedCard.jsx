@@ -18,7 +18,6 @@ function FeedCard(props) {
         case "Photo":
           feedDetails.photos.forEach(async (id) => {
             const { data } = await getIndividualPhoto(id);
-            // console.log(data);
             setPhotoDetails((prev) => [...prev, data]);
           });
 
@@ -27,8 +26,8 @@ function FeedCard(props) {
           setPhotoDetails([
             {
               id: feedDetails.id,
-              originalUrl: feedDetails.originalFileLink,
-              thumbNailUrl: feedDetails.thumbnailLink,
+              originalFileUrl: feedDetails.originalFileLink,
+              thumbNailUrl: feedDetails.thumbNailUrl,
             },
           ]);
           break;
