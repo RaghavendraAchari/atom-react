@@ -11,11 +11,9 @@
     justify-content: center;
 }
 form{
-        
     padding: 32px;
     box-shadow: 0 1px 3px rgba(128, 128, 128, 0.447);
     border-radius: 5px;
-
 }
 .group{
     margin: 0 0 var(--margin) 0;
@@ -62,7 +60,6 @@ form{
 }
 
 @media only screen and (max-width:480px){
-
     .login-container{
         width: 100%;
         margin: 16px 0;
@@ -70,6 +67,10 @@ form{
         display: flex;
         align-items: center;
         justify-content: center;
+        form{
+            width: 80%;
+        }
     }
+    
     
 }

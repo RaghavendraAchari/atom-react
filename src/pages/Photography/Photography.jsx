@@ -53,7 +53,6 @@ function Photography() {
         setFetchingData(false);
       })
       .catch((e) => {
-        console.log(e);
         setError("Could not load the data!");
         setFetchingData(false);
       });
@@ -73,8 +72,10 @@ function Photography() {
     setFilteredItem(item);
   };
 
-  const handleLoadMore = () => {
-    if (currentPage >= totalPage) return;
+  const handleLoadMore = (e) => {
+    if (currentPage >= totalPage) {
+      return;
+    }
     loadData(currentPage + 1);
     setCurrentPage(currentPage + 1);
   };
@@ -82,7 +83,7 @@ function Photography() {
   return (
     <div className="container">
       <div className="common-grid">
-        <aside>
+        {/* <aside>
           <h4 className="filter-title" onClick={handleFilterClick}>
             Filters : {filteredItem}
           </h4>
@@ -103,7 +104,7 @@ function Photography() {
               })}
             </ul>
           )}
-        </aside>
+        </aside> */}
         <main>
           {fetchingData === false && feedList.length === 0 && (
             <div className="no-data">No data available</div>
@@ -122,11 +123,17 @@ function Photography() {
           {fetchingData === true && <LoadingWindow showCaption={true} />}
           {error !== "" && <div className="error">{error}</div>}
           <div id="list-end">
-            {feedList.length > 0 && fetchingData === false && (
-              <button className="button" onClick={handleLoadMore}>
-                Load More
-              </button>
-            )}
+            {feedList.length > 0 &&
+              fetchingData === false &&
+              currentPage < totalPage && (
+                <button
+                  disabled="currentPage===totalPages"
+                  className="button"
+                  onClick={handleLoadMore}
+                >
+                  Load More
+                </button>
+              )}
           </div>
         </main>
       </div>

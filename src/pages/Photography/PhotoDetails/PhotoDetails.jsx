@@ -1,10 +1,12 @@
 import "./PhotoDetails.scss";
 import { useLocation } from "react-router";
 import Carousel from "../../../components/Carousel/Carousel";
+import { LINE_SPLIT } from "../../../services/data";
 
 function PhotoDetails(props) {
   const location = useLocation();
   const { feedDetails, photoDetails } = location.state;
+  const details = feedDetails.details.split(LINE_SPLIT);
 
   return (
     <div id="photo-details-page">
@@ -16,7 +18,11 @@ function PhotoDetails(props) {
       <div className="photo-container">
         <Carousel items={photoDetails} />
       </div>
-      <p>{feedDetails.details} </p>
+      {details.map((element, index) => (
+        <p key={index} className="details">
+          {element}
+        </p>
+      ))}
     </div>
   );
 }

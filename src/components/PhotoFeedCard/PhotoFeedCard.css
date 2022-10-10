@@ -90,8 +90,8 @@ p.date{
         grid-area: text;
     }
     .card-photo-content .photo-holder{
-        height: 10vh;
-        width: 20vw;
+        height: 12vh;
+        width: calc(33%);
     }
     .card-photo-content .photos{
         display: flex;

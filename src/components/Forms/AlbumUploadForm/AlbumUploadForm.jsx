@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useState } from "react";
 import { postAlbumFeed } from "../../../services/photoServices";
+import { getDriveViewLink } from "../../../services/utils";
 import LoadingWindow from "../../LoadingWindow/LoadingWindow";
 import "./AlbumUploadForm.scss";
 
@@ -26,7 +27,7 @@ function AlbumUploadForm() {
   function handleAddPhoto() {
     const photo = {};
     photo["thumbNailUrl"] = thumbNailUrl;
-    photo["originalFileUrl"] = originalFileUrl;
+    photo["originalFileUrl"] = getDriveViewLink(originalFileUrl);
     photo["date"] = new Date(Date.parse(dateFormat)).toISOString();
 
     if (
@@ -34,17 +35,6 @@ function AlbumUploadForm() {
     ) {
       alert("Thumbnail link must start with either 'http://' or 'https://'");
       photoFormRef.current["thumbNailUrl"].focus();
-      photoFormRef.current.scrollIntoView();
-    } else if (
-      !(
-        originalFileUrl.startsWith("https") ||
-        originalFileUrl.startsWith("http")
-      )
-    ) {
-      alert(
-        "Original file link must start with either 'http://' or 'https://'"
-      );
-      photoFormRef.current["originalFileUrl"].focus();
       photoFormRef.current.scrollIntoView();
     } else {
       setPhotos((prev) => [...prev, photo]);
@@ -113,7 +103,11 @@ function AlbumUploadForm() {
                   </p>
                   <span onClick={() => deletePhoto(index)}>x</span>
                 </div>
-                <img src={element.thumbNailUrl} alt="Preview" />
+                <img
+                  src={element.thumbNailUrl}
+                  alt="Preview"
+                  rel="noreferrer"
+                />
               </div>
             ))
           ) : (
@@ -138,7 +132,7 @@ function AlbumUploadForm() {
             <input
               id="thumbNailUrl"
               name="thumbNailUrl"
-              type="text"
+              type="url"
               pattern="https?://.+"
               title="Enter a valid url"
               placeholder="Low res link (must start with https://)"
@@ -148,7 +142,7 @@ function AlbumUploadForm() {
           </div>
           <div className="group">
             <label htmlFor="originalFileUrl">
-              Original File Link (High Res) :
+              Original File ID (High Res) :
             </label>
             <input
               name="originalFileUrl"
@@ -156,7 +150,7 @@ function AlbumUploadForm() {
               type="text"
               pattern="https?://.+"
               title="Enter a valid url"
-              placeholder="High res link (must start with https://)"
+              placeholder="Original Id of the image"
               value={originalFileUrl}
               onChange={(e) => setOriginalFileUrl(e.target.value)}
             />

@@ -23,5 +23,12 @@
             margin-top: var(--margin-small);
 
         }
+        .short-desc{
+            text-align: justify;
+        }
+        .details{
+            text-align: justify;
+            padding-inline: 0;
+        }
     }
 }

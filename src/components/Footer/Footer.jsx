@@ -7,7 +7,7 @@ class Footer extends React.Component {
     return (
       <footer>
         <div className="subtitle">
-          <p>Connect To Me</p>
+          <p>Connect With Me</p>
         </div>
         <div className="link-container">
           <a

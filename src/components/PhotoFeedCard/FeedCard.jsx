@@ -16,9 +16,13 @@ function FeedCard(props) {
     if (useEfectRan.current === false) {
       switch (feedType) {
         case "Photo":
-          feedDetails.photos.forEach(async (id) => {
+          feedDetails.photos.forEach(async (id, index) => {
             const { data } = await getIndividualPhoto(id);
-            setPhotoDetails((prev) => [...prev, data]);
+            setPhotoDetails((prev) => {
+              // const newList = [...prev];
+              // newList[index] = data;
+              return [...prev, data];
+            });
           });
 
           break;
@@ -70,12 +74,12 @@ function FeedCard(props) {
 
   const renderPhotos = () => {
     const listOfImages = photoDetails.map((element, index) => {
-      // console.log(element);
-      return (
-        <div key={element.id} className="photo-holder">
-          <img src={element.thumbNailUrl} alt={index} />
-        </div>
-      );
+      if (element !== undefined || element !== null)
+        return (
+          <div key={element.id} className="photo-holder">
+            <img src={element.thumbNailUrl} alt={index} rel="noreferrer" />
+          </div>
+        );
     });
     return listOfImages.slice(0, 3);
   };

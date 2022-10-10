@@ -11,3 +11,5 @@ const BASE_URL = url[environment];
 export function getBaseURL(){
     return BASE_URL;
 }
+
+export const LINE_SPLIT = "\n";

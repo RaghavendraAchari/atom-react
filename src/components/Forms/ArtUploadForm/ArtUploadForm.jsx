@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { uploadNewArt } from "../../../services/artService";
+import { getDriveViewLink } from "../../../services/utils";
 import LoadingWindow from "../../LoadingWindow/LoadingWindow";
 import "./ArtUploadForm.scss";
 
@@ -19,7 +20,7 @@ function ArtUploadForm() {
     const form = e.target;
     const title = form["title"].value;
     const thumbnailLink = form["thumbnailLink"].value;
-    const originalFileLink = form["originalFileLink"].value;
+    const originalFileLink = getDriveViewLink(form["originalFileLink"].value);
     const description = form["description"].value;
     const date = form["date"].valueAsDate;
     const data = {
@@ -60,17 +61,17 @@ function ArtUploadForm() {
           <input
             name="thumbnailLink"
             placeholder="Low res link (must start with https://)"
-            type="text"
+            type="url"
             required
           />
         </div>
         <div className="group">
           <label htmlFor="originalFileLink">
-            Original File Link (High Res) :
+            Original File ID (High Res) :
           </label>
           <input
             name="originalFileLink"
-            placeholder="High res link (must start with https://)"
+            placeholder="Original file ID"
             type="text"
             required
           />

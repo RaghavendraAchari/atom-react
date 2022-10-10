@@ -77,12 +77,16 @@ function Operations(props) {
         {type === "Album" && <AlbumUploadForm />}
         {type === "" && (
           <div>
-            <p>Select a type to continue</p>
+            <p style={{ textAlign: "center" }}>Select a type to continue</p>
           </div>
         )}
       </div>
       <div className="group">
-        <button className="button" onClick={logout}>
+        <button
+          className="button"
+          style={{ margin: "8px auto 0 auto", borderRadius: "5px" }}
+          onClick={logout}
+        >
           Logout
         </button>
       </div>

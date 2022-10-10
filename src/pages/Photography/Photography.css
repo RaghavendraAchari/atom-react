@@ -1,16 +1,17 @@
 
 
 .container{
-    background-color: rgba(225, 225, 225, 0.218);
+    /* background-color: rgba(225, 225, 225, 0.218); */
 }
 .common-grid{
     display: grid;
-    grid-template-areas: "heading heading" "aside main";
+    grid-template-areas: "heading heading" "main main";
     grid-auto-columns: 1fr 3fr;
     grid-auto-flow: column;
-    margin-inline: 24px;
+    margin-inline: auto;
+    width: 60em;
     margin-bottom: 16px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.24);
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.24); */
     background-color: white;
     justify-content: center;
 }
@@ -32,14 +33,16 @@ main{
     padding: var(--margin);
     height: calc(100vh - var(--nav-height));
     overflow: auto;
+    width: 60em;
+    margin: 0 auto;
 }
 
 
 .title{
     grid-area: heading;
-    position: sticky;
-    top: 0;
-    left: 0;
+    /* position: sticky; */
+    /* top: 0;
+    left: 0; */
     height: 100%;
     align-self: start;
 }
@@ -89,7 +92,8 @@ ul li{
         "main"
         "aside"
         ;
-        margin: 0;
+        margin: 0 auto;
+        width: 100%;
     }
     aside{
         position: sticky;
@@ -108,6 +112,7 @@ ul li{
         width: inherit;
         overflow-y: auto;
         overflow-x: auto;
+        width: 100%;
     }
     main::-webkit-scrollbar{
         width: 4px;
