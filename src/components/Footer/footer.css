@@ -67,6 +67,8 @@ a svg{
 .quickLink{
     text-decoration: none;
     margin: var(--margin-small);
+    font-size: 14px;
+    font-weight: 500;
 }
 footer .no-border{
     border-bottom: none;

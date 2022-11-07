@@ -11,19 +11,26 @@ function FeedCard(props) {
   const { feedDetails, feedType } = props;
   const [photoDetails, setPhotoDetails] = useState([]);
   const useEfectRan = useRef(false);
+  const [error, setError] = useState("");
+  const [fetchingData, setFetchingData] = useState(true);
 
   useEffect(() => {
     if (useEfectRan.current === false) {
       switch (feedType) {
         case "Photo":
-          feedDetails.photos.forEach(async (id, index) => {
-            const { data } = await getIndividualPhoto(id);
-            setPhotoDetails((prev) => {
-              // const newList = [...prev];
-              // newList[index] = data;
-              return [...prev, data];
-            });
+          const list = feedDetails.photos.map((id) => {
+            return getIndividualPhoto(id);
           });
+          Promise.all(list)
+            .then((dataArray) => {
+              const photoArray = dataArray.map((res) => res.data);
+              setFetchingData(false);
+              setPhotoDetails(photoArray);
+            })
+            .catch((err) => {
+              setError("Error in fetching image list!");
+              setFetchingData(false);
+            });
 
           break;
         case "Art":
@@ -34,6 +41,7 @@ function FeedCard(props) {
               thumbNailUrl: feedDetails.thumbNailUrl,
             },
           ]);
+          setFetchingData(false);
           break;
         default:
           break;
@@ -77,7 +85,12 @@ function FeedCard(props) {
       if (element !== undefined || element !== null)
         return (
           <div key={element.id} className="photo-holder">
-            <img src={element.thumbNailUrl} alt={index} rel="noreferrer" />
+            <img
+              src={element.thumbNailUrl}
+              alt={index}
+              rel="noreferrer noopener"
+              referrerPolicy="no-referrer"
+            />
           </div>
         );
     });
@@ -99,10 +112,10 @@ function FeedCard(props) {
         </div>
       </div>
       <div className="card-photo-content">
-        {photoDetails.length > 0 ? (
+        {fetchingData === true && <LoadingWindow loader="BounceLoader" />}
+        {fetchingData === false && error !== "" && <p>{error}</p>}
+        {fetchingData === false && photoDetails.length > 0 && (
           <div className="photos">{renderPhotos()}</div>
-        ) : (
-          <LoadingWindow loader="BounceLoader" />
         )}
 
         {photoDetails.length > 0 && (

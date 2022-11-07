@@ -1,6 +1,6 @@
 .photoBanner{
     height: calc(100vh - var(--nav-height));
-    background-image: url("../../../public/assets/PhotoBanner.jpg") ;
+    background-image: url("../../../public/assets/PhotoBanner.webp") ;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center 75%;
@@ -9,11 +9,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding: var(--padding);
+    // padding: var(--padding);
     color: white;
 }
 .photoBanner .contents{
-    width: 100%;
+    width: 90%;
+    margin-inline: auto;
     background-color: rgba(52, 52, 52, 0.249);
     position: relative;
     border-radius: 5px;
@@ -37,5 +38,17 @@ p{
 .button-wrapper{
     width: 100%;
 
+}
+
+
+@media only screen and (max-width: 480px) {
+    .photoBanner{
+        padding-inline: 16px;
+        
+        .contents{
+            width: 100%;
+        }
+    } 
+    
 }
 

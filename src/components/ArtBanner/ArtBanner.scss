@@ -1,13 +1,13 @@
 .artBanner{
     height:  calc(100vh - var(--nav-height));
     margin: var(--nav-height) 0;
-    background-image: url("./../../../public/assets/VecteezyVirtualTourism-VR-Illustration-2FA0821_generated.jpg") ;
+    background-image: url("./../../../public/assets/art-image.webp") ;
     background-size: cover;
     background-repeat: no-repeat;
     background-position-y: center;
     background-clip: border-box;
     width: 100%;
-    padding: var(--padding);
+    // padding: var(--padding);
     color: black;
 
     display: flex;
@@ -16,7 +16,8 @@
 }
 
 .artBanner .contents{
-    width: 100%;
+    width: 90%;
+    margin-inline: auto;
     height: max-content;
     background-color: rgb(215, 215, 215); 
     border-radius: 5px;
@@ -34,7 +35,12 @@ h1,p, .button-wrapper{
 
 @media only screen and (max-width: 480px){
     .artBanner{
-    background-position: center 20%;
+        padding-inline: 16px;
+
+        background-position:  30% ;
+        .contents{
+            width: 100%;
+        }
     }
 }
 

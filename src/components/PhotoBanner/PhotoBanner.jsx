@@ -1,4 +1,4 @@
-import "./PhotoBanner.css";
+import "./PhotoBanner.scss";
 import React from "react";
 import ActionButton from "../ActionButton/ActionButton";
 

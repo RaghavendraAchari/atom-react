@@ -1,8 +1,4 @@
 
-
-.container{
-    /* background-color: rgba(225, 225, 225, 0.218); */
-}
 .common-grid{
     display: grid;
     grid-template-areas: "heading heading" "main main";

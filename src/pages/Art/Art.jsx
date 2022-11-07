@@ -39,7 +39,7 @@ function Art() {
   }, []);
 
   return (
-    <div className="art-page">
+    <div className="art-page avoid-nav">
       {fetchingData === true && <LoadingWindow showCaption={true} />}
 
       {fetchingData === false && artList.length === 0 ? (

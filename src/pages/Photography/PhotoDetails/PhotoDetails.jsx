@@ -9,17 +9,19 @@ function PhotoDetails(props) {
   const details = feedDetails.details.split(LINE_SPLIT);
 
   return (
-    <div id="photo-details-page">
+    <div id="photo-details-page" className="avoid-nav">
       <div className="top-contents">
         <h2 className="title">{feedDetails.title}</h2>
         <h4 className="date">{feedDetails.date}</h4>
-        <p className="short-desc indent">{feedDetails.description} </p>
+        <p className="short-desc indent reading-text">
+          {feedDetails.description}{" "}
+        </p>
       </div>
       <div className="photo-container">
         <Carousel items={photoDetails} />
       </div>
       {details.map((element, index) => (
-        <p key={index} className="details">
+        <p key={index} className="details reading-text">
           {element}
         </p>
       ))}

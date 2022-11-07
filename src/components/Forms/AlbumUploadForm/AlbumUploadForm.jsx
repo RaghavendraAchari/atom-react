@@ -3,7 +3,11 @@ import { useState } from "react";
 import { postAlbumFeed } from "../../../services/photoServices";
 import { getDriveViewLink } from "../../../services/utils";
 import LoadingWindow from "../../LoadingWindow/LoadingWindow";
+import { toast, ToastContainer } from "react-toastify";
 import "./AlbumUploadForm.scss";
+
+const UPLOAD_SUCCESS_MSG = "New art has been added successfully";
+const UPLOAD_FILURE_MSG = "Error in uploading new art! Please try again later";
 
 function AlbumUploadForm() {
   const [photos, setPhotos] = useState([]);
@@ -77,8 +81,9 @@ function AlbumUploadForm() {
         e.target.reset();
         setPhotos([]);
         setUploading(false);
+        toast.success(UPLOAD_SUCCESS_MSG);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => toast.error(UPLOAD_FILURE_MSG));
   }
 
   function deletePhoto(index) {
@@ -89,6 +94,7 @@ function AlbumUploadForm() {
   }
   return (
     <div className="art-section">
+      <ToastContainer />
       <h5>Add photos of the album :</h5>
       <div className="group">
         <label htmlFor="photos"> Photos :</label>
@@ -106,7 +112,8 @@ function AlbumUploadForm() {
                 <img
                   src={element.thumbNailUrl}
                   alt="Preview"
-                  rel="noreferrer"
+                  rel="noreferrer noopener"
+                  referrerPolicy="no-referrer"
                 />
               </div>
             ))

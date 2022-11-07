@@ -1,5 +1,4 @@
-import "./AboutMe.css";
-import ActionButton from "../ActionButton/ActionButton";
+import "./AboutMe.scss";
 
 function AboutMe() {
   return (
@@ -13,7 +12,23 @@ function AboutMe() {
             music.
           </p>
 
-          <ActionButton text="Know More" to="#AboutMe" showImage={false} />
+          {/* <ActionButton text="Know More" to="/aboutme" showImage={false} /> */}
+          <a
+            className="button button-small"
+            target={"_blank"}
+            rel="noreferrer"
+            href="https://raghavendraachari.notion.site/Raghavendra-Achari-0baaf4b8126c4ee995c8bb957e587f04"
+          >
+            Know more about me
+          </a>
+          <a
+            id="how-link"
+            rel="noreferrer"
+            target={"_blank"}
+            href="https://raghavendraachari.notion.site/How-I-built-Atom-By-Raghav-fdb719c78e504a39b3a6a74f5fc5cad7"
+          >
+            How I built this Atom Site ?
+          </a>
         </div>
         <div className="photo-container">
           <div className="photo">

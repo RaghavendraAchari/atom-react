@@ -1,6 +1,6 @@
 header{
     width: 100%;
-    min-height: var(--nav-height);
+    height: var(--nav-height);
     border-bottom: 1px solid rgba(0, 0, 0, 0.195);
     position: sticky;
     top: 0;
@@ -15,7 +15,8 @@ header{
 }
 .nav-wrapper{
     height: 100%;
-    margin: 0 var(--margin) 0 var(--margin);
+    width: 90%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,4 +58,15 @@ nav a{
     align-items: center;
     justify-content: center;
     margin-left: var(--margin-small);
+}
+
+
+@media only screen and (max-width: 480px) {
+    header{
+        .nav-wrapper{
+            width: 100%;
+            padding: 0 var(--margin) 0 var(--margin);
+        }
+    }
+
 }

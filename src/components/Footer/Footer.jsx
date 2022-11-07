@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./footer.css";
 
 class Footer extends React.Component {
@@ -40,7 +40,7 @@ class Footer extends React.Component {
             <JamInstagram />
           </a>
           <a
-            href="mailto:raghav.achari.l@gmail.com"
+            href="mailto:raghavachariwork@gmail.com"
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -50,12 +50,15 @@ class Footer extends React.Component {
         <div className="quick-links">
           <p>Quick Links</p>
           <div>
+            <Link className="quickLink" to="/">
+              Home
+            </Link>
             <Link className="quickLink" to="/photography">
               Photography
             </Link>
-            <Link className="quickLink" to="/art">
+            <NavLink className="quickLink" to="/art">
               Art
-            </Link>
+            </NavLink>
             <Link className="quickLink" to="/admin">
               Admin Login
             </Link>

@@ -1,5 +1,5 @@
 const url = {
-    production:"https://atombyraghav.herokuapp.com/api",
+    production:"https://atombyraghav.azurewebsites.net/api",
     development:"http://localhost:8080/api"
 }
 

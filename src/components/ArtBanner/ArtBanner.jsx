@@ -1,4 +1,4 @@
-import "./ArtBanner.css";
+import "./ArtBanner.scss";
 import ActionButton from "../ActionButton/ActionButton";
 
 function ArtBanner() {

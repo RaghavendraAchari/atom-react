@@ -2,7 +2,13 @@ import { useState } from "react";
 import { uploadNewArt } from "../../../services/artService";
 import { getDriveViewLink } from "../../../services/utils";
 import LoadingWindow from "../../LoadingWindow/LoadingWindow";
+import { toast, ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 import "./ArtUploadForm.scss";
+
+const UPLOAD_SUCCESS_MSG = "New art has been added successfully";
+const UPLOAD_FILURE_MSG = "Error in uploading new art! Please try again later";
 
 function ArtUploadForm() {
   const [isUploading, setUploading] = useState(false);
@@ -36,14 +42,17 @@ function ArtUploadForm() {
     uploadNewArt(data)
       .then((res) => {
         setUploading(false);
+        toast.success(UPLOAD_SUCCESS_MSG);
       })
       .catch((err) => {
         setUploading(false);
+        toast.error(UPLOAD_FILURE_MSG);
       });
   }
 
   return (
     <div className="art-section">
+      <ToastContainer />
       <h5>Add details of the art :</h5>
 
       <form onSubmit={handleSubmit}>

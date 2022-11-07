@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template-areas: "text photo";
-    gap: 5px;
+    gap: 16px;
     border: 0.5px solid rgba(49, 49, 49, 0.185);
     border-radius: 5px;
     margin-bottom: var(--margin);
@@ -53,6 +53,7 @@ p.date{
 }
 .card-photo-content .photos{
     display: flex;
+    justify-content: flex-start;
 }
 .card-photo-content p{
     opacity: 0.8;
@@ -62,7 +63,7 @@ p.date{
 }
 .card-photo-content .photo-holder{
     height: 20vh;
-    width: 10vw;
+    width: calc(33% - 4px);
     margin: 8px 4px;
     border: 0.5px solid rgba(0, 0, 0, 0.186);
     border-radius: 3px;
@@ -82,8 +83,9 @@ p.date{
 
 @media only screen and (max-width: 480px){
     .card{
-        grid-template-areas: "text" "photo";
+        grid-template-areas: "photo" "text";
         width: 100%;
+        gap: 8px;
     }
     
     .card-text-content{
@@ -92,6 +94,7 @@ p.date{
     .card-photo-content .photo-holder{
         height: 12vh;
         width: calc(33%);
+        margin-top: 0;
     }
     .card-photo-content .photos{
         display: flex;
@@ -108,6 +111,6 @@ p.date{
     .button-container{
         display: flex;
         justify-content: center;
-        margin-bottom: 1em;
+        margin-top: 8px;
     }
 }

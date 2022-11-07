@@ -15,8 +15,6 @@ function Carousel(props) {
     setImageIndex((prev) => prev + 1);
   }
 
-  // useEffect(() => console.log(selectedIndex), [selectedIndex]);
-
   return (
     <div className="carousel">
       {props.items.map((element, index) => {
@@ -27,8 +25,15 @@ function Carousel(props) {
             }
             key={index}
           >
+            {/* <a onClick={onPrevClicked} className="image-button left">
+              {"<"}
+            </a>
+            <a onClick={onNextClicked} className="image-button right">
+              {">"}
+            </a> */}
             <img src={element.originalFileUrl} alt={"Album Photo" + index} />
-            <p>
+
+            <p id="image-info-text">
               *Only high quality images are shown here. It might take time to
               load.
             </p>
