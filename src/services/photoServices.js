@@ -5,18 +5,17 @@ import {getBaseURL} from './data';
 const BASE_URL = getBaseURL();
 
 export async function getAllPhotos(pageNumber){
-    const url = BASE_URL + "/albumfeed/page/" + pageNumber;
+    const url = BASE_URL + "/api/albumfeed/page/" + pageNumber;
     return await axios.get(url);
 }
 
 export async function getIndividualPhoto(id){
-    const url = BASE_URL + "/photo/" + id;
+    const url = BASE_URL + "/api/photo/" + id;
     return await axios.get(url);
 }
 
 export async function postAlbumFeed(data){
-    const url = BASE_URL + "/albumfeed";
-    // const url = "http://localhost:8080/api" + "/albumfeed";
+    const url = BASE_URL + "/api/albumfeed";
     let token = sessionStorage.getItem(USER_TOKEN);
     if(token === null || token === undefined)
         throw new Error("Token Error");

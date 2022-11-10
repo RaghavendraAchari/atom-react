@@ -3,7 +3,7 @@ import { USER_TOKEN } from "./authService";
 import {getBaseURL} from './data';
 
 const BASE_URL = getBaseURL();
-const url = BASE_URL + "/art";
+const url = BASE_URL + "/api/art";
 
 
 

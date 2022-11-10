@@ -24,3 +24,28 @@ h1{
     font-weight: 500;
     font-size: 16px;
 } */
+
+/* .container{
+    width: 90%;
+    margin-inline: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .container{
+        width: 100%;
+        margin-inline: var(--margin);
+    }
+} */
+
+.banner-container{
+    width: 100%;
+    margin-inline: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .banner-container{
+        width: 100%;
+        margin-inline: 0;
+    }
+}
+

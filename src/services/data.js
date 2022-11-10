@@ -1,5 +1,5 @@
 const url = {
-    production:"https://atombyraghav.azurewebsites.net/api",
+    production:"https://atombyraghav.azurewebsites.net",
     development:"http://localhost:8080/api"
 }
 
@@ -11,5 +11,6 @@ const BASE_URL = url[environment];
 export function getBaseURL(){
     return BASE_URL;
 }
+
 
 export const LINE_SPLIT = "\n";

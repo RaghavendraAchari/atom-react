@@ -33,6 +33,9 @@ form{
         &:focus{                
             outline: 0.5px solid rgba(0, 0, 0, 0.356);
         }
+        &:disabled{
+            cursor: not-allowed;
+        }
     }
     textarea{
         font-family: inherit;

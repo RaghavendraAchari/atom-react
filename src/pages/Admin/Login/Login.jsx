@@ -73,7 +73,12 @@ function Login(props) {
         )}
 
         <div className="group">
-          <input type="submit" className="button" id="submit-button" />
+          <input
+            disabled={signingIn}
+            type="submit"
+            className="button"
+            id="submit-button"
+          />
         </div>
         {signingIn === true && <LoadingWindow />}
       </form>

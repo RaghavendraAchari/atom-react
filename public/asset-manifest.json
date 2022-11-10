@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.76efb61a.css",
+    "main.js": "/static/js/main.7140dd99.js",
+    "static/js/787.d9a3d8dc.chunk.js": "/static/js/787.d9a3d8dc.chunk.js",
+    "static/media/PhotoBanner.jpg": "/static/media/PhotoBanner.32d4dba6cbe016fcd5e1.jpg",
+    "static/media/VecteezyVirtualTourism-VR-Illustration-2FA0821_generated.jpg": "/static/media/VecteezyVirtualTourism-VR-Illustration-2FA0821_generated.8c15bee3f7ac4bbb74b5.jpg",
+    "static/media/programming-g23b1f4e10_640.jpg": "/static/media/programming-g23b1f4e10_640.cfdf938793e4dbb218ca.jpg",
+    "index.html": "/index.html",
+    "main.76efb61a.css.map": "/static/css/main.76efb61a.css.map",
+    "main.7140dd99.js.map": "/static/js/main.7140dd99.js.map",
+    "787.d9a3d8dc.chunk.js.map": "/static/js/787.d9a3d8dc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.76efb61a.css",
+    "static/js/main.7140dd99.js"
+  ]
+}

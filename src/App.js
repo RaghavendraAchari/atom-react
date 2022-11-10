@@ -5,12 +5,13 @@ import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import Art from './pages/Art/Art';
 import Home from './pages/Home';
-import Photography from './pages/Photography/Photography';
 import NotFound from "./pages/NotFound/NotFound";
-import PhotoDetails from './pages/Photography/PhotoDetails/PhotoDetails';
 import ArtDetails from './pages/Art/ArtDetails/ArtDetails';
 import Login from './pages/Admin/Login/Login';
 import Operations from './pages/Admin/Operations/Dashboard';
+import PhotographyRoute from './pages/Photography/PhotographyRoute';
+import ArtRoute from './pages/Art/ArtRoute';
+import AdminRoute from './pages/Admin/AdminRoute';
 
 
 function App() {
@@ -24,12 +25,9 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/photography/" element = {<Photography />}/>
-        <Route path="/photography/:id" element = {<PhotoDetails />}/>
-        <Route path="/art" element = {<Art />}/>
-        <Route path="/art/:id" element = {<ArtDetails />}/>
-        <Route path="/admin/operations" element = {<Operations />}/>
-        <Route path="/admin" element = {<Login />}/>
+        <Route path="/photography/*" element = {<PhotographyRoute />}/>
+        <Route path="/art/*" element = {<ArtRoute />}/>
+        <Route path="/admin/*" element = {<AdminRoute />}/>
         <Route path="/" element = {<Home />}/>
         <Route path="*" element = {<NotFound />} />
       </Routes>

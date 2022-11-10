@@ -1,6 +1,7 @@
 import axios from "axios";
+import { getBaseURL } from "./data";
 
-const BASE_URL = "https://atombyraghav.herokuapp.com";
+const BASE_URL = getBaseURL();
 // const BASE_URL = "http://localhost:8080";
 
 export const USER_TOKEN = "ATOM_ADMIN_USER_TOKEN";

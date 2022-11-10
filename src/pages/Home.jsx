@@ -8,7 +8,7 @@ import "./Home.css";
 class Home extends React.Component {
   render() {
     return (
-      <div className="container  avoid-nav">
+      <div>
         <PhotoBanner />
         <ArtBanner />
         <AboutMe />
