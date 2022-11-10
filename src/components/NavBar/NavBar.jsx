@@ -10,9 +10,13 @@ function NavBar() {
     <header>
       <div className="nav-wrapper">
         <div className="brandwrapper">
-          {/* <img src="./assets/atom-logo.svg" alt="brand logo" /> */}
           <Link to="/" id="brandname">
-            Atom <strong className="name">| By Raghav Achari</strong>
+            {/* Atom <strong className="name">| By Raghav Achari</strong> */}
+            <img
+              className="brand-logo"
+              src="./assets/atom-icon.svg"
+              alt="brand logo"
+            />
           </Link>
         </div>
         <nav>

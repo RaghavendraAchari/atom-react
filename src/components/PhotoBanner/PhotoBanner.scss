@@ -1,6 +1,7 @@
 .photoBanner{
     height: calc(100vh - var(--nav-height));
-    background-image: url("../../../public/assets/PhotoBanner.webp") ;
+    background-image: url("../../../public/assets/PhotoBanner.webp"), linear-gradient(rgba(155, 155, 155, 0.749), rgba(0, 0, 0, 0.864));
+    
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center 75%;
@@ -9,17 +10,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    // padding: var(--padding);
     color: white;
 }
 .photoBanner .contents{
     width: 90%;
     margin-inline: auto;
-    background-color: rgba(52, 52, 52, 0.249);
     position: relative;
     border-radius: 5px;
-    padding: var(--padding) var(--padding);
     animation: slide-up 0.7s ease-in forwards;
+    h1,p, .button-wrapper{
+        padding: var(--padding-small) 0;
+        max-width: 35em;
+    }
 }
 @keyframes slide-up {
     0%{
@@ -29,9 +31,7 @@
         bottom: 4vh;
     }
 }
-h1,p, .button-wrapper{
-    padding: var(--padding-small);
-}
+
 p{
     line-height: 24px;
 }
@@ -43,10 +43,16 @@ p{
 
 @media only screen and (max-width: 480px) {
     .photoBanner{
-        padding-inline: 16px;
+        padding: 16px;
+        background-image: linear-gradient(to top, #00000069, transparent,transparent), 
+            url(http://localhost:3000/static/media/PhotoBanner.d581823f6ddc50ff096b.webp), 
+            linear-gradient(to top,rgb(0 0 0 / 89%),rgb(68 68 68 / 75%), transparent);
         
         .contents{
             width: 100%;
+            h1,p,.button-wrapper{
+                max-width: 100%;
+            }
         }
     } 
     

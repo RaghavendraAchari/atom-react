@@ -28,6 +28,19 @@ header{
     font-size: var(--brand-font-size);
     height: 100%;
     line-height: 24px;
+    .brand-logo{
+        opacity: 1;
+    }
+    #brandname{
+        height: 100%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        img{
+            margin: 0;
+            width: 100px;
+        }
+    }
 
     #brandname{
         text-decoration: none;
@@ -41,10 +54,7 @@ header{
         }
     }
 }
-.brandwrapper img{
-    margin-right: 8px;
-    height: 50%;
-}
+
 nav{
     display: flex;
     align-items: center;

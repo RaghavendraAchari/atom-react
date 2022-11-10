@@ -5,7 +5,7 @@ import ActionButton from "../ActionButton/ActionButton";
 function PhotoBanner(props) {
   return (
     <div className="photoBanner banner-container">
-      <div className="contents container">
+      <div className="contents">
         <h1>Photography</h1>
         <p>
           Art is something that always reminds us of how beautiful things can

@@ -1,72 +1,85 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import "./footer.css";
+import { NavLink } from "react-router-dom";
+import "./footer.scss";
 
 class Footer extends React.Component {
   render() {
     return (
       <footer>
-        <div className="subtitle">
-          <p>Connect With Me</p>
-        </div>
-        <div className="link-container">
-          <a
-            href="http://linkedin.com/in/raghavendraachari"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <JamLinkedinCircle />
-          </a>
-
-          <a
-            href="http://github.com/RaghavendraAchari"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <JamGithubCircle />
-          </a>
-          <a
-            href="http://twitter.com/raghav_achari"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <JamTwitterCircle />
-          </a>
-          <a
-            href="http://instagram.com/raghav_achari2"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <JamInstagram />
-          </a>
-          <a
-            href="mailto:raghavachariwork@gmail.com"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <JamGoogleCircle />
-          </a>
-        </div>
-        <div className="quick-links">
-          <p>Quick Links</p>
-          <div>
-            <Link className="quickLink" to="/">
-              Home
-            </Link>
-            <Link className="quickLink" to="/photography">
-              Photography
-            </Link>
-            <NavLink className="quickLink" to="/art">
-              Art
-            </NavLink>
-            <Link className="quickLink" to="/admin">
-              Admin Login
-            </Link>
+        <div className="grid">
+          <div className="brand-details">
+            <div className="brand">
+              <img src="/assets/atom-icon.svg" alt="brand icon" />
+            </div>
+            <div className="subtitle">
+              <p>Connect With Me</p>
+            </div>
+            <div className="link-container">
+              <a
+                href="http://linkedin.com/in/raghavendraachari"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <JamLinkedinCircle />
+              </a>
+              <a
+                href="http://github.com/RaghavendraAchari"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <JamGithubCircle />
+              </a>
+              <a
+                href="http://twitter.com/raghav_achari"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <JamTwitterCircle />
+              </a>
+              <a
+                href="http://instagram.com/raghav_achari2"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <JamInstagram />
+              </a>
+              <a
+                href="mailto:raghavachariwork@gmail.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <JamGoogleCircle />
+              </a>
+            </div>
+          </div>
+          <div className="quick-links">
+            <p>Quick Links</p>
+            <ul>
+              <li>
+                <NavLink className="quickLink" to="/">
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="quickLink" to="/photography">
+                  Photography
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="quickLink" to="/art">
+                  Art
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="quickLink" to="/admin">
+                  Admin Login
+                </NavLink>
+              </li>
+            </ul>
           </div>
         </div>
-
         <div className="copyright">
-          <p>2022 | Copyright@ Raghavendra Achari</p>
+          <p>2022 | Copyright @ Raghavendra Achari</p>
         </div>
       </footer>
     );

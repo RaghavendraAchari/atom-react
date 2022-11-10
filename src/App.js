@@ -1,14 +1,10 @@
+import './App.css';
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import './App.css';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
-import Art from './pages/Art/Art';
 import Home from './pages/Home';
 import NotFound from "./pages/NotFound/NotFound";
-import ArtDetails from './pages/Art/ArtDetails/ArtDetails';
-import Login from './pages/Admin/Login/Login';
-import Operations from './pages/Admin/Operations/Dashboard';
 import PhotographyRoute from './pages/Photography/PhotographyRoute';
 import ArtRoute from './pages/Art/ArtRoute';
 import AdminRoute from './pages/Admin/AdminRoute';
