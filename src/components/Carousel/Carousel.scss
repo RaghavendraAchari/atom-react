@@ -1,5 +1,6 @@
 .carousel{
     width: 100%;
+    margin: var(--margin-small) 0 var(--margin) 0;
     // position: relative;
     @keyframes photo-animation {
         0%{
@@ -14,12 +15,13 @@
         min-height: 50vh;
         padding: 5px;
         display: none;
-        box-shadow: 0 4px 10px #c0c0c0;
+        // box-shadow: 0 4px 10px #c0c0c0;
         border-radius: 5px;
         margin-bottom: 4px;
         position: relative;
+        border: 0.5px solid rgba(67, 67, 67, 0.314);
         animation: photo-animation 0.3s ease-in forwards;
-        background-color: rgba(180, 180, 180, 0.1);
+        background-color: rgba(238, 238, 238, 0.1);
         &.selected-image{
             display: block;
             img{
@@ -68,9 +70,9 @@
     .image-nav{
         background-color: rgba(255, 255, 255, 0.145);
         width: 100%;
-        height: 5vh;
         display: flex;
         justify-content: center;
+        margin: 4px 0;
         
         span.image-selector{
             margin: 5px;
