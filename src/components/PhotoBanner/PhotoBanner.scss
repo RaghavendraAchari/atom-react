@@ -44,9 +44,10 @@ p{
 @media only screen and (max-width: 480px) {
     .photoBanner{
         padding: 16px;
-        background-image: linear-gradient(to top, #00000069, transparent,transparent), 
-            url(http://localhost:3000/static/media/PhotoBanner.d581823f6ddc50ff096b.webp), 
-            linear-gradient(to top,rgb(0 0 0 / 89%),rgb(68 68 68 / 75%), transparent);
+        background-image: 
+        linear-gradient(to top, #00000069, transparent,transparent),
+        url("../../../public/assets/PhotoBanner.webp"),
+        linear-gradient(to top,rgb(0 0 0 / 89%),rgb(68 68 68 / 75%), transparent);
         
         .contents{
             width: 100%;
