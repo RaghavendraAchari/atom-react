@@ -1,15 +1,15 @@
 
 .common-grid{
     display: grid;
-    grid-template-areas: "heading heading" "main main";
+    grid-template-areas: "aside main";
     grid-auto-columns: 1fr 3fr;
     grid-auto-flow: column;
     margin-inline: auto;
-    width: 60em;
+    width: 90%;
     margin-bottom: 16px;
     /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.24); */
     background-color: white;
-    justify-content: center;
+    // justify-content: center;
 }
 .no-data{
     text-align: center;
@@ -29,16 +29,15 @@ main{
     padding: var(--margin);
     height: calc(100vh - var(--nav-height));
     overflow: auto;
-    width: 60em;
+    width: 70em;
     margin: 0 auto;
+    
 }
 
 
 .title{
     grid-area: heading;
-    /* position: sticky; */
-    /* top: 0;
-    left: 0; */
+    
     height: 100%;
     align-self: start;
 }
@@ -51,8 +50,19 @@ main{
     align-items: center; 
 }
 .filter-title{
-    padding: var(--margin-small);
+    padding: var(--margin-small) 0;
     cursor: pointer;
+}
+.filter-list{
+    .filter-item:hover{
+        // --button-border-radius: 10px 0 0 10px;
+        // --button-stroke-color: #00747C;
+        // --button-text-color: #00747C;
+        // --button-bg-color: #FFFFFF;
+        // --button-text-color-hover: #FFFFFF;
+        // --button-bg-color-hover: #00747C;
+        background-color: #008e986f;
+    }
 }
 ul{
     transition: all 1s;
@@ -60,6 +70,9 @@ ul{
 ul li{
     list-style: none;
     cursor: pointer;
+    padding: var(--padding-small);
+    border-radius: 5px;
+
 }
 .error{
     text-align: center;
@@ -71,13 +84,9 @@ ul li{
     margin: 8px auto;
     padding: var(--padding-small);
 }
-.filter-list .filter-item:hover{
-    background-color: rgba(250, 235, 215, 0.6);
-    border-radius: 10px;
-}
+
 .filter-list .filter-item.active{
-    background-color: antiquewhite;
-    border-radius: 10px;
+    background-color: #00747c99;
     box-shadow: 0 2px 7px  rgba(0, 0, 0, 0.068);
 
 }

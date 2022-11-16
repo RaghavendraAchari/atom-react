@@ -14,7 +14,7 @@ function NavBar() {
             {/* Atom <strong className="name">| By Raghav Achari</strong> */}
             <img
               className="brand-logo"
-              src="./assets/atom-icon.svg"
+              src="/assets/atom-icon.svg"
               alt="brand logo"
             />
           </Link>

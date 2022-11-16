@@ -1,10 +1,10 @@
 const url = {
-    production:"https://atombyraghav.azurewebsites.net",
-    development:"http://localhost:8080/api"
+    production:"https://atom-test.azurewebsites.net",
+    development:"http://localhost:8080"
 }
 
 let environment = "production";
-//  let environment = "development";
+//let environment = "development";
 
 const BASE_URL = url[environment];
 

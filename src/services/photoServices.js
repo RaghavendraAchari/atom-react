@@ -4,9 +4,9 @@ import {getBaseURL} from './data';
 
 const BASE_URL = getBaseURL();
 
-export async function getAllPhotos(pageNumber){
+export async function getAllPhotos(pageNumber,category){
     const url = BASE_URL + "/api/albumfeed/page/" + pageNumber;
-    return await axios.get(url);
+    return await axios.get(url,{ params:{ category:category } });
 }
 
 export async function getIndividualPhoto(id){
@@ -28,4 +28,10 @@ export async function postAlbumFeed(data){
         }
      });
 
+}
+export async function getDataByCategory(pageNumber, category){
+    const url = BASE_URL + "/api/albumfeed/page/" + pageNumber;
+    return axios.get(url,{
+        params:{ category:category }
+    })
 }

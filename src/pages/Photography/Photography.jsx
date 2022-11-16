@@ -1,13 +1,14 @@
-import "./Photography.css";
+import "./Photography.scss";
 import React, { useEffect, useRef } from "react";
 import FeedCard from "../../components/PhotoFeedCard/FeedCard";
 import { useState } from "react";
 import { getAllPhotos } from "../../services/photoServices";
 import LoadingWindow from "../../components/LoadingWindow/LoadingWindow";
+import { getCategoryList } from "../../services/categoryService";
 
 function Photography() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(null);
   const [filteredItem, setFilteredItem] = useState("All");
   const [showFilter, toggleShowFilter] = useState(
     window.innerWidth <= 480 ? false : true
@@ -16,25 +17,32 @@ function Photography() {
   const [fetchingData, setFetchingData] = useState(false);
   const useEffectRan = useRef(false);
   const [feedList, setFeedList] = useState([]);
+  const [categoryList, setCategoryList] = useState([
+    { _id: "1", category: "All" },
+  ]);
 
   useEffect(() => {
     if (useEffectRan.current === false) {
-      loadData(currentPage);
-
+      loadData(currentPage, filteredItem);
+      loadCategories();
       return () => (useEffectRan.current = true);
     }
   }, []);
 
-  const [filterItems] = useState([
-    "All",
-    "Nature",
-    "Wildlife / Animals",
-    "Architecture",
-  ]);
+  function loadCategories() {
+    getCategoryList()
+      .then((res) => {
+        setCategoryList((prev) => {
+          return [...prev, ...res.data];
+        });
+        setFilteredItem("All");
+      })
+      .catch((err) => console.log(err));
+  }
 
-  function loadData(currentPage) {
+  function loadData(currentPage, category) {
     setFetchingData(true);
-    getAllPhotos(currentPage)
+    getAllPhotos(currentPage, category)
       .then((res) => {
         setTotalPage(res.data.totalPages);
         const list = res.data.albums.map((element) => {
@@ -64,47 +72,52 @@ function Photography() {
 
   const handleFilterItemClick = (e, item) => {
     if (item === filteredItem) return;
+    setFeedList([]);
+    setCurrentPage(1);
+    loadData(1, item);
+    setFilteredItem(item);
+
     if (window.innerWidth <= 480) {
-      setFilteredItem(item);
       toggleShowFilter(false);
       return;
     }
-    setFilteredItem(item);
   };
 
   const handleLoadMore = (e) => {
     if (currentPage >= totalPage) {
       return;
     }
-    loadData(currentPage + 1);
+    loadData(currentPage + 1, filteredItem);
     setCurrentPage(currentPage + 1);
   };
 
   return (
     <div className="container">
       <div className="common-grid">
-        {/* <aside>
-          <h4 className="filter-title" onClick={handleFilterClick}>
-            Filters : {filteredItem}
-          </h4>
-          {showFilter && (
-            <ul className="filter-list">
-              {filterItems.map((item) => {
-                return (
-                  <li
-                    key={item}
-                    className={`filter-item ${
-                      filteredItem === item ? "active" : ""
-                    } `}
-                    onClick={(e) => handleFilterItemClick(e, item)}
-                  >
-                    <p>{item}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </aside> */}
+        <aside>
+          <div className="filter-tab">
+            <h4 className="filter-title" onClick={handleFilterClick}>
+              Filters : {filteredItem}
+            </h4>
+            {showFilter && (
+              <ul className="filter-list">
+                {categoryList.map((item) => {
+                  return (
+                    <li
+                      key={item._id}
+                      className={`filter-item ${
+                        filteredItem === item.category ? "active" : ""
+                      } `}
+                      onClick={(e) => handleFilterItemClick(e, item.category)}
+                    >
+                      <p>{item.category}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        </aside>
         <main>
           {fetchingData === false && feedList.length === 0 && (
             <div className="no-data">No data available</div>
@@ -127,7 +140,7 @@ function Photography() {
               fetchingData === false &&
               currentPage < totalPage && (
                 <button
-                  disabled="currentPage===totalPages"
+                  disabled={currentPage === totalPage}
                   className="button"
                   onClick={handleLoadMore}
                 >
