@@ -17,9 +17,7 @@ function Photography() {
   const [fetchingData, setFetchingData] = useState(false);
   const useEffectRan = useRef(false);
   const [feedList, setFeedList] = useState([]);
-  const [categoryList, setCategoryList] = useState([
-    { _id: "1", category: "All" },
-  ]);
+  const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
     if (useEffectRan.current === false) {
@@ -33,7 +31,7 @@ function Photography() {
     getCategoryList()
       .then((res) => {
         setCategoryList((prev) => {
-          return [...prev, ...res.data];
+          return [{ _id: "1", category: "All" }, ...res.data];
         });
         setFilteredItem("All");
       })
