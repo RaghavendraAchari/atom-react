@@ -49,6 +49,9 @@ footer{
                 margin: 0 0 0 auto;
                 width: fit-content;
                 border-top: 1px solid rgba(0, 0, 0, 0.33);
+                li{
+                    list-style: none;
+                }
             }   
             p{
                 width: 100%;

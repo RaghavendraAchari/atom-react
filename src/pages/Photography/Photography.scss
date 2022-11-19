@@ -10,6 +10,16 @@
     /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.24); */
     background-color: white;
     // justify-content: center;
+    ul{
+        transition: all 1s;
+    }
+    ul li{
+        list-style: none;
+        cursor: pointer;
+        padding: var(--padding-small);
+        border-radius: 5px;
+    
+    }
 }
 .no-data{
     text-align: center;
@@ -67,16 +77,7 @@ main{
         background-color: #008e986f;
     }
 }
-ul{
-    transition: all 1s;
-}
-ul li{
-    list-style: none;
-    cursor: pointer;
-    padding: var(--padding-small);
-    border-radius: 5px;
 
-}
 .error{
     text-align: center;
     color: red;

@@ -23,3 +23,11 @@ export function getIdByDriveUrl(url){
 
     return id;
 }
+
+export function getSmallPreviewUrl(id) {
+    return `https://lh3.google.com/u/1/d/${id}=s320`;
+}
+
+export function getLargePreviewUrl(id) {
+    return `https://lh3.google.com/u/1/d/${id}`;
+}
