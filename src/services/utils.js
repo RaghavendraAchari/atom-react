@@ -31,3 +31,9 @@ export function getSmallPreviewUrl(id) {
 export function getLargePreviewUrl(id) {
     return `https://lh3.google.com/u/1/d/${id}`;
 }
+
+export function getLargePreviewUrlFromLink(link){
+    if(link !== null && link !== undefined){
+        return link.split("=")[0];
+    }
+}
