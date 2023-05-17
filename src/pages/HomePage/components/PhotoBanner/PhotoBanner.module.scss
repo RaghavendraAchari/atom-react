@@ -1,6 +1,6 @@
 .photoBanner{
     height: calc(75vh);
-    background-image: url("./../../../../../public/assets/photo-background.webp"), linear-gradient(rgba(155, 155, 155, 0.749), rgba(0, 0, 0, 0.864));
+    background-image: url("./../../../../../public/assets/photo-background.jpg"), linear-gradient(rgba(155, 155, 155, 0.749), rgba(0, 0, 0, 0.864));
 
     background-size: cover;
     background-repeat: no-repeat;
@@ -73,7 +73,7 @@ p{
         padding: 16px;
         background-image: 
         linear-gradient(to top, #00000069, transparent,transparent),
-        url("./../../../../../public/assets/photo-background.webp"),
+        url("./../../../../../public/assets/photo-background.jpg"),
         linear-gradient(to top,rgb(0 0 0 / 89%),rgb(68 68 68 / 75%), transparent);
         
         grid-template-areas: "image" 
