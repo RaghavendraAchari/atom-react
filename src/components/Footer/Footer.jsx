@@ -9,7 +9,7 @@ class Footer extends React.Component {
         <div className={Styles.grid}>
           <div className={Styles.brandDetails}>
             <div className={Styles.brand}>
-              <img src="/assets/atom-icon.svg" alt="brand icon" />
+              <img src={"/assets/atom-icon.svg"} alt="brand icon" />
             </div>
             <div className={Styles.subtitle}>
               <p>Connect With Me</p>

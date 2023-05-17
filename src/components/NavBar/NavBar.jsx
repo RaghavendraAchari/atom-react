@@ -10,11 +10,11 @@ function NavBar() {
     <header>
       <div className="nav-wrapper">
         <div className="brandwrapper">
-          <Link to="/" id="brandname">
+          <Link to={"/"} id="brandname">
             {/* Atom <strong className="name">| By Raghav Achari</strong> */}
             <img
               className="brand-logo"
-              src="/assets/atom-icon.svg"
+              src={"/assets/atom-icon.svg"}
               alt="brand logo"
             />
           </Link>
@@ -22,23 +22,23 @@ function NavBar() {
         <nav>
           <Routes>
             <Route
-              path="/photography/*"
+              path={"/photography/*"}
               element={
-                <Link to="/photography/">
+                <Link to={"/photography/"}>
                   <strong id="photography">Photography</strong>
                 </Link>
               }
             />
             <Route
-              path="/art/*"
+              path={"/art/*"}
               element={
-                <Link to="/art">
+                <Link to={"/art"}>
                   <strong id="art">Art</strong>
                 </Link>
               }
             />
             <Route
-              path="/"
+              path={"/"}
               element={
                 <a href="#AboutMe">
                   Contact Me
@@ -47,9 +47,9 @@ function NavBar() {
               }
             />
             <Route
-              path="/admin/*"
+              path={"/admin/*"}
               element={
-                <Link to="">
+                <Link to={""}>
                   <strong id="art">
                     {sessionStorage.getItem(USER_TOKEN) ? "Admin" : ""}
                   </strong>
@@ -57,9 +57,9 @@ function NavBar() {
               }
             />
             <Route
-              path="*"
+              path={"*"}
               element={
-                <Link to="/">
+                <Link to={"/"}>
                   <strong>Home</strong>
                 </Link>
               }
