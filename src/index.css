@@ -51,6 +51,11 @@ body {
   --h1-line-height:72px;
 
   --card-shadow: 1px 2px 10px rgba(0, 0, 0, 0.185);
+
+  /* footer */
+  --footer-color-fadded: rgba(26, 26, 26, 0.748);
+  --footer-color-dark: rgba(26, 26, 26, 0.907);
+  
   
 }
 

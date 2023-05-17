@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
-import Home from './pages/Home';
+import Home from './pages/HomePage/Home';
 import NotFound from "./pages/NotFound/NotFound";
 import PhotographyRoute from './pages/Photography/PhotographyRoute';
 import ArtRoute from './pages/Art/ArtRoute';
