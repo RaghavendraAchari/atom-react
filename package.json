@@ -20,7 +20,8 @@
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
     "web-vitals": "^2.1.4",
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "marked": "^4.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
