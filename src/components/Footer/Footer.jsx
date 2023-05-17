@@ -1,20 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./footer.scss";
+import Styles from "./footer.module.scss";
 
 class Footer extends React.Component {
   render() {
     return (
-      <footer>
-        <div className="grid">
-          <div className="brand-details">
-            <div className="brand">
+      <footer className={Styles.footer}>
+        <div className={Styles.grid}>
+          <div className={Styles.brandDetails}>
+            <div className={Styles.brand}>
               <img src="/assets/atom-icon.svg" alt="brand icon" />
             </div>
-            <div className="subtitle">
+            <div className={Styles.subtitle}>
               <p>Connect With Me</p>
             </div>
-            <div className="link-container">
+            <div className={Styles.linkContainer}>
               <a
                 href="http://linkedin.com/in/raghavendraachari"
                 target="_blank"
@@ -52,33 +52,33 @@ class Footer extends React.Component {
               </a>
             </div>
           </div>
-          <div className="quick-links">
+          <div className={Styles.quickLinks}>
             <p>Quick Links</p>
             <ul>
               <li>
-                <NavLink className="quickLink" to="/">
+                <NavLink className={Styles.quickLink} to="/">
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink className="quickLink" to="/photography">
+                <NavLink className={Styles.quickLink} to="/photography">
                   Photography
                 </NavLink>
               </li>
               <li>
-                <NavLink className="quickLink" to="/art">
+                <NavLink className={Styles.quickLink} to="/art">
                   Art
                 </NavLink>
               </li>
               <li>
-                <NavLink className="quickLink" to="/admin">
+                <NavLink className={Styles.quickLink} to="/admin">
                   Admin Login
                 </NavLink>
               </li>
             </ul>
           </div>
         </div>
-        <div className="copyright">
+        <div className={Styles.copyright}>
           <p>2022 | Copyright @ Raghavendra Achari</p>
         </div>
       </footer>

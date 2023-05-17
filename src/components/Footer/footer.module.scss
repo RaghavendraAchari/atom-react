@@ -1,11 +1,11 @@
-footer{
+.footer{
     .grid{
         display: grid;
         grid-template-areas: "brand links";
         grid-template-columns: 1fr 1fr;
         width: 100%;
         margin: auto;
-        .brand-details{
+        .brandDetails{
             grid-area: brand;
             justify-self: right;
             display: flex;
@@ -27,7 +27,7 @@ footer{
                 margin-top: 16px;
                 margin-bottom: 8px;
             }
-            .link-container{
+            .linkContainer{
                 width: fit-content;
                 margin: 0;
                 display: flex;
@@ -38,7 +38,7 @@ footer{
                 }
             }
         }
-        .quick-links{
+        .quickLinks{
             grid-area: links;
             justify-self: left;
             text-align: start;
@@ -59,7 +59,7 @@ footer{
             }
             .quickLink{
                 text-decoration: none;
-                margin: var(--margin-small) 0;
+                margin: 0 0;
                 font-size: 14px;
                 font-weight: 500;
             }
@@ -69,9 +69,8 @@ footer{
     padding: 5vh 0 0 0;
     height: fit-content;
     background-color: rgba(212, 212, 212, 0.72);
+    // background-color: var(--footer-color-fadded);
     grid-area: footer;
-    
-    
     
     a{
         color: rgba(0, 0, 0, 0.627);
@@ -94,9 +93,12 @@ footer{
         margin-top: var(--margin-small) ;
         text-align: center;
         width: 100%;
-        background-color: rgba(147, 147, 147, 0.589);
+        background-color: var(--footer-color-fadded);
+
+        // background-color: rgba(147, 147, 147, 0.589);
         font-size: 14px;
         p{
+            color: white;
             margin: auto;
             font-weight: bold;
             opacity: 0.75;
@@ -111,13 +113,12 @@ footer{
 } 
 
 @media only screen and (max-width: 480px){
-    footer{
+    .footer{
         .grid{
             grid-template-columns: 1fr;
 
             grid-template-areas: "brand" "links";
-            .brand-details{
-                grid-area: brand;
+            .brandDetails{
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -134,7 +135,7 @@ footer{
                     margin-top: 16px;
                     margin-bottom: 8px;
                 }
-                .link-container{
+                .linkContainer{
                     width: fit-content;
                     margin: 0;
                     display: flex;
@@ -145,7 +146,7 @@ footer{
                     }
                 }
             }
-            .quick-links{
+            .quickLinks{
                 grid-area: links;
                 text-align: center;
                 margin-top: 16px;
@@ -167,7 +168,7 @@ footer{
                 }
                 .quickLink{
                     text-decoration: none;
-                    margin-top: var(--margin-small) ;
+                    margin-top: 0 ;
                     font-size: 16px;
                     font-weight: 500;
                 }
@@ -189,11 +190,6 @@ footer{
                 }
             }
         }
-        
-
-        
-        
-        
         
     } 
 }
