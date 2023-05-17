@@ -1,0 +1,113 @@
+.artBanner{
+    max-height: 75vh;
+    width: 80%;
+    // background-image: url("./../../../public/assets/art-background.jpg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-clip: border-box;
+    
+    color: black;
+    background-clip: border-box;
+
+    display: grid;
+    grid-template-areas: "content image";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+
+    align-items: center;
+    align-content: center;
+    margin: auto;
+    // background-color: aquamarine;
+    .decorator{
+        opacity: 0.4;
+        width: 130px;
+    }
+    .decoratorOne{
+        transform: rotate(180deg);
+        position: relative;
+        top: 0;
+        right: 0;
+        left: calc(100% - 100px);
+    }
+    .decoratorTwo{
+        position: relative;
+        left: calc(-100px);
+    }
+
+    .image{
+        margin-inline: auto;
+        background-color: aqua;
+        grid-area: image;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        animation: bounce 2.5s ease infinite;
+    }
+
+    @keyframes bounce {
+        0%{
+            transform: translateY(0px);
+        }
+        50%{
+            transform: translateY(10px);
+        }
+        100%{
+            transform: translateY(0px);
+        }
+        
+    }
+
+    .contents{
+        // background-color: blue;
+        grid-area: content;
+        margin-inline: auto;
+        .h1,.p, .buttonWrapper{
+            padding: var(--padding-small) 0;
+            max-width: 35em;
+            width: 100%;
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 480px){
+    .artBanner{
+        padding: 16px;
+        background-position:  30% ;
+        height: 90vh;
+        max-height: 90vh;
+        display: flex;
+        position: relative;
+        .contents{
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+        }
+        .image{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .decorator{
+            opacity: 0.4;
+            width: 60px;
+        }
+        .decoratorOne{
+            transform: rotate(180deg);
+            position: relative;
+            top: 70px;
+            right: 0;
+            left: calc(100% - 16px - 25px);
+        }
+        .decoratorTwo{
+            position: relative;
+            left: calc(-60px + 16px);
+            bottom: 20px;
+            z-index: -10;
+        }
+    }
+}
+

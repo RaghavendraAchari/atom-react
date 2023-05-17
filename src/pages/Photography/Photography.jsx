@@ -19,6 +19,7 @@ function Photography() {
   const [feedList, setFeedList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
 
+  // eslint-disable-next-line
   useEffect(() => {
     if (useEffectRan.current === false) {
       loadData(currentPage, filteredItem);

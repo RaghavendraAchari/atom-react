@@ -1,0 +1,144 @@
+.aboutMe{
+    margin: 10vh 0;
+    padding: 10vh 10%;
+    height: 70vh;
+    background-color: hsla(219, 88%, 97%, 0.914);
+    text-align: center;
+    align-content: space-around;
+    justify-content: space-around;
+}
+.button-small{
+    padding: 8px 16px;
+    font-size: 14px;
+}
+#how-link{
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 12px;
+    color: hsl(233, 16%, 44%);
+    margin: 8px 0 4px 0;
+    &:hover{
+        font-weight: 700;
+        color: hsla(233, 15%, 33%, 0.984);
+        
+        
+    }
+}
+.aboutMe .wrapper{
+    position: relative;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+.aboutMe .wrapper .photo-container{
+    width: 40%;
+    height: 80%;
+    position: absolute;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.11);
+    border: 1px solid rgba(128, 128, 128, 0.6);
+    border-radius: 5px;
+}
+.aboutMe .wrapper .photo-container .photo{
+    width: 75%;
+    height: 50%;
+    padding: 4px;
+    // box-shadow: 0 2px 4px rgba(102, 102, 102, 0.192);
+    border-radius: 10px;
+    background-color: white;
+    aspect-ratio: 2/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aboutMe .wrapper .main-content{
+    width: 70%;
+    height: 90%;
+    position: absolute;
+    right: 0;
+    color: rgba(27, 38, 58, 0.789) ;
+    background-color: white;
+    text-align: center;
+    padding: var(--padding) calc(70%/4);
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.11);
+    border: 1px solid rgba(128, 128, 128, 0.6);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    *{
+        margin: 4px 0;
+    }
+}
+.aboutMe h1{
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 52px;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.448);
+    
+}
+.aboutMe p.name{
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+
+@media only screen and (max-width: 480px){
+    .aboutMe h1{
+        font-weight: normal;
+        font-size: 40px;
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.448);
+        margin-top: 10vh;
+    }
+    .aboutMe p.name{
+        font-weight: 700;
+        font-size: 24px;
+    }
+    .aboutMe p.about-text{
+        font-size: 16px;
+    }
+    .aboutMe{
+        height: calc(100vh - var(--margin)) ;
+        margin: var(--margin) 0;
+        padding: 5vh var(--padding);
+    }
+    .aboutMe .wrapper{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    }
+    .aboutMe .wrapper .photo-container{
+        width: 80%;
+        height: 40%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+    }
+    .aboutMe .wrapper .photo-container .photo{
+        width: 80%;
+        height: 50%;        
+    }
+    
+    .aboutMe .wrapper .main-content{
+        width: 100%;
+        height: 70%;
+        position: absolute;
+        
+        text-align: center;
+        padding: var(--padding) calc(10%);
+        top: 30%;
+    }
+}

@@ -1,0 +1,109 @@
+.photoBanner{
+    height: calc(75vh);
+    background-image: url("./../../../../../public/assets/photo-background.webp"), linear-gradient(rgba(155, 155, 155, 0.749), rgba(0, 0, 0, 0.864));
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 75%;
+    // background-color: #00000069;
+    background-clip: border-box;
+    width: 100%;
+    margin-inline:auto;
+    display: grid;
+    grid-template-areas: "image content";
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+    color: white;
+
+    .photoBannerImage{
+        grid-area: image;
+        width: 80%;
+        margin: auto;
+        border-radius: 10px;
+        object-fit: cover;
+        background-color: rgb(128, 128, 128);
+    }
+
+    .contents{
+        // background-color: rgb(124, 137, 149);
+        grid-area: content;
+        padding-left: 30px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-inline: auto;
+        position: relative;
+        border-radius: 5px;
+
+        // animation: slide-up 0.7s ease-in forwards;
+        color: rgb(46, 46, 46);
+
+        .h1,.p, .buttonWrapper{
+            padding: var(--padding-small) 0;
+            max-width: 35em;
+            // background-color: #00000069;
+        }
+    }
+}
+
+@keyframes slide-up {
+    0%{
+        bottom: -4vh;
+    }
+    100%{
+        bottom: 4vh;
+    }
+}
+
+p{
+    line-height: 24px;
+}
+.button-wrapper{
+    width: 100%;
+
+}
+
+
+@media only screen and (max-width: 480px) {
+    .photoBanner{
+        width: 100vw;
+        height: 90vh;
+        padding: 16px;
+        background-image: 
+        linear-gradient(to top, #00000069, transparent,transparent),
+        url("./../../../../../public/assets/photo-background.webp"),
+        linear-gradient(to top,rgb(0 0 0 / 89%),rgb(68 68 68 / 75%), transparent);
+        
+        grid-template-areas: "image" 
+                            "content";
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
+
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 70%;
+
+        .photoBannerImage{
+            width: 100%;
+        }
+        
+        .contents{
+            padding: 0;
+            width: 100%;
+            height: 50%;
+
+            .h1,.p,.buttonWrapper{
+                text-align: center;
+                max-width: 100%;
+            }
+            .buttonWrapper{
+                display: flex;
+                justify-content: center;
+            }
+        }
+    } 
+    
+}
+
