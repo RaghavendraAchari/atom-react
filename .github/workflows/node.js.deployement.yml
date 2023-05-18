@@ -55,5 +55,5 @@ jobs:
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
         github_token: ${{ secrets.CICD_TOKEN }}
-        repository: ${{ github.repository }}
+        repository: 'atom.github.io'
 
