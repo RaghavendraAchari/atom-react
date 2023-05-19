@@ -1,4 +1,5 @@
 .artBanner{
+    height: 75vh;
     max-height: 75vh;
     width: 80%;
     // background-image: url("./../../../public/assets/art-background.jpg") ;
@@ -20,6 +21,7 @@
     margin: auto;
     // background-color: aquamarine;
     .decorator{
+        display: none;
         opacity: 0.4;
         width: 130px;
     }
