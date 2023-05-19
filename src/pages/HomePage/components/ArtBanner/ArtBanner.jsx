@@ -5,9 +5,9 @@ function ArtBanner() {
   return (
     <div className={Styles.artBanner}>
       
-      <img className={Styles.image} src="assets/art-background.webp" alt="art-banner"  />
+      <img className={Styles.image} src={process.env.PUBLIC_URL + "/assets/art-banner.jpg"} alt="art-banner"  />
       <div className={Styles.contents}>
-      <img className={[Styles.decorator, Styles.decoratorOne].join(" ")} src="assets/decorator.jpg" alt="dec 1" />
+      <img className={[Styles.decorator, Styles.decoratorOne].join(" ")} src={process.env.PUBLIC_URL + "/assets/738526.jpg"} alt="dec 1" />
 
         <h1 className={Styles.h1}>Art</h1>
         <p  className={Styles.p}>
@@ -22,7 +22,7 @@ function ArtBanner() {
             imageType="Art"
           ></ActionButton>
         </div>
-      <img className={[Styles.decorator, Styles.decoratorTwo].join(" ")} src="assets/decorator.jpg" alt="dec 1" />
+      <img className={[Styles.decorator, Styles.decoratorTwo].join(" ")} src={process.env.PUBLIC_URL + "/assets/738526.jpg"} alt="dec 1" />
 
       </div>
     </div>

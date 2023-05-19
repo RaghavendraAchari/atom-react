@@ -3,18 +3,18 @@ import React from "react";
 import { MaterialSymbolsContactsRounded } from "../../assets/ImageComponents/ContactImage";
 import { Link, Route, Routes } from "react-router-dom";
 import { USER_TOKEN } from "../../services/authService";
-// import {useMatch} from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 function NavBar() {
   return (
     <header>
       <div className="nav-wrapper">
         <div className="brandwrapper">
-          <Link to="%PUBLIC_URL%" id="brandname">
+          <Link to="/" id="brandname">
             {/* Atom <strong className="name">| By Raghav Achari</strong> */}
             <img
               className="brand-logo"
-              src={"%PUBLIC_URL%/assets/atom-icon.svg"}
+              src={process.env.PUBLIC_URL + "/assets/atom-icon.svg"}
               alt="brand logo"
             />
           </Link>
@@ -22,32 +22,32 @@ function NavBar() {
         <nav>
           <Routes>
             <Route
-              path={"%PUBLIC_URL%/photography/*"}
+              path={"/photography/*"}
               element={
-                <Link to={"%PUBLIC_URL%/photography/"}>
+                <Link to={"/photography/"}>
                   <strong id="photography">Photography</strong>
                 </Link>
               }
             />
             <Route
-              path={"%PUBLIC_URL%/art/*"}
+              path={"/art/*"}
               element={
-                <Link to={"%PUBLIC_URL%/art"}>
+                <Link to={"/art"}>
                   <strong id="art">Art</strong>
                 </Link>
               }
             />
             <Route
-              path={"%PUBLIC_URL%/"}
+              path={"/"}
               element={
-                <a href="#AboutMe">
+                <HashLink to="/#AboutMe">
                   Contact Me
                   <MaterialSymbolsContactsRounded id="contactIcon" />
-                </a>
+                </HashLink>
               }
             />
             <Route
-              path={"%PUBLIC_URL%/admin/*"}
+              path={"/admin/*"}
               element={
                 <Link to={""}>
                   <strong id="art">

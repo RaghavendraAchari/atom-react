@@ -33,7 +33,7 @@ function AboutMe() {
         <div className="photo-container">
           <div className="photo">
             <img
-              src="/assets/programming-g23b1f4e10_640.jpg"
+              src={process.env.PUBLIC_URL + "/assets/programming-g23b1f4e10_640.jpg"}
               alt="dev"
               width="100%"
             />

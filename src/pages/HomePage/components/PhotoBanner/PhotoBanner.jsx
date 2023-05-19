@@ -6,7 +6,7 @@ import Styles from "./PhotoBanner.module.scss";
 function PhotoBanner() {
   return (
     <div className={Styles.photoBanner}>
-      <img className={Styles.photoBannerImage} src="assets/PhotoBanner.webp" alt="PhotoBanner"  />
+      <img className={Styles.photoBannerImage} src={process.env.PUBLIC_URL + "/assets/PhotoBanner.webp"} alt="PhotoBanner"  />
       <div className={Styles.contents}>
         <h1 className={Styles.h1}>Photography</h1>
         <p className={Styles.p}>
