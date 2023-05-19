@@ -21,7 +21,8 @@
     "sass-loader": "^13.2.2",
     "web-vitals": "^2.1.4",
     "gh-pages": "^5.0.0",
-    "marked": "^4.2.2"
+    "marked": "^4.2.2",
+    "react-router-hash-link": "^2.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
