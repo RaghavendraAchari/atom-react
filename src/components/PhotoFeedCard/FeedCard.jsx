@@ -6,6 +6,7 @@ import { getIndividualPhoto } from "../../services/photoServices";
 import ActionButton from "../ActionButton/ActionButton";
 import LoadingWindow from "../LoadingWindow/LoadingWindow";
 import "./PhotoFeedCard.css";
+import CustomErrorMessage from "../MessageCards/CustomErrorMessage";
 
 function FeedCard(props) {
   const { feedDetails, feedType } = props;
@@ -113,7 +114,7 @@ function FeedCard(props) {
       </div>
       <div className="card-photo-content">
         {fetchingData === true && <LoadingWindow loader="BounceLoader" />}
-        {fetchingData === false && error !== "" && <p>{error}</p>}
+        {fetchingData === false && error !== "" && <CustomErrorMessage textToDisplay={error} />}
         {fetchingData === false && photoDetails.length > 0 && (
           <div className="photos">{renderPhotos()}</div>
         )}

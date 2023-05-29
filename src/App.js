@@ -1,4 +1,4 @@
-import './App.css';
+import Styles from './App.module.scss';
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
@@ -8,27 +8,31 @@ import NotFound from "./pages/NotFound/NotFound";
 import PhotographyRoute from './pages/Photography/PhotographyRoute';
 import ArtRoute from './pages/Art/ArtRoute';
 import AdminRoute from './pages/Admin/AdminRoute';
+import ComponentTester from './pages/ComponentTester/ComponentTester';
 
 
 function App() {
   const location = useLocation();
 
-  useEffect(()=>{
-    window.scrollTo(0,0);
-  },[location]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
-    <div className="App">
+    <div className={Styles.App}>
       <NavBar />
-      <Routes>
-        <Route path="/photography/*" element = {<PhotographyRoute />}/>
-        <Route path="/art/*" element = {<ArtRoute />}/>
-        <Route path="/admin/*" element = {<AdminRoute />}/>
-        <Route path="/" element = {<Home />}/>
-        <Route path="*" element = {<NotFound />} />
-      </Routes>
+      <div className={Styles.container}>
+        <Routes>
+          <Route path="/photography/*" element={<PhotographyRoute />} />
+          <Route path="/art/*" element={<ArtRoute />} />
+          <Route path="/admin/*" element={<AdminRoute />} />
+          <Route path="/test/*" element={<ComponentTester />} />
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
       <Footer />
-    </div>    
+    </div>
   );
 }
 

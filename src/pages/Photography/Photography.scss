@@ -1,5 +1,4 @@
-
-.common-grid{
+.common-grid {
     display: grid;
     grid-template-areas: "aside main";
     // grid-auto-columns: 1fr 3fr;
@@ -9,34 +8,33 @@
     margin-bottom: 16px;
     /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.24); */
     background-color: white;
+
     // justify-content: center;
-    ul{
+    ul {
         transition: all 1s;
     }
-    ul li{
+
+    ul li {
         list-style: none;
         cursor: pointer;
         padding: var(--padding-small);
         border-radius: 5px;
-    
+
     }
 }
-.no-data{
+
+.no-data {
     text-align: center;
-    
 }
-.title div.line{
+
+.title div.line {
     border-bottom: 0.5px solid rgba(55, 55, 55, 0.256);
-    
+
 }
-aside{
-    grid-area: aside;
-    padding-inline: var(--margin);
-    border-right: 0.5px solid rgba(55, 55, 55, 0.256);
-    width: 20em;
-    justify-self: flex-end;
-}
-main{
+
+
+
+main {
     justify-self: flex-start;
     grid-area: main;
     padding: var(--margin);
@@ -44,30 +42,32 @@ main{
     overflow: auto;
     width: 60em;
     margin: 0 var(--margin);
-    
+
 }
 
 
-.title{
+.title {
     grid-area: heading;
-    
+
     height: 100%;
     align-self: start;
 }
 
-.title h3{
+.title h3 {
     margin: var(--margin);
-    height: 4vh;  
+    height: 4vh;
     display: flex;
-    
-    align-items: center; 
+
+    align-items: center;
 }
-.filter-title{
+
+.filter-title {
     padding: var(--margin-small) 0;
     cursor: pointer;
 }
-.filter-list{
-    .filter-item:hover{
+
+.filter-list {
+    .filter-item:hover {
         // --button-border-radius: 10px 0 0 10px;
         // --button-stroke-color: #00747C;
         // --button-text-color: #00747C;
@@ -78,33 +78,35 @@ main{
     }
 }
 
-.error{
+.error {
     text-align: center;
     color: red;
     font-weight: 600;
 }
-#list-end button{
+
+#list-end button {
     font-size: 12px;
     margin: 8px auto;
     padding: var(--padding-small);
 }
 
-.filter-list .filter-item.active{
+.filter-list .filter-item.active {
     background-color: #00747c99;
-    box-shadow: 0 2px 7px  rgba(0, 0, 0, 0.068);
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.068);
 
 }
 
-@media only screen and (max-width: 480px){
-    .common-grid{
+@media only screen and (max-width: 480px) {
+    .common-grid {
         grid-template-areas: "heading"
-        "main"
-        "aside"
+            "main"
+            "aside"
         ;
         margin: 0 auto;
         width: 100%;
     }
-    aside{
+
+    aside {
         position: sticky;
         bottom: 0;
         left: 0;
@@ -116,19 +118,22 @@ main{
         border-right: none;
         border-bottom: 0.5px solid rgba(55, 55, 55, 0.256);
         margin: 0;
-    
+
     }
-    main{
+
+    main {
         width: inherit;
         overflow-y: auto;
         overflow-x: auto;
         width: 100%;
         margin: 0;
     }
-    main::-webkit-scrollbar{
+
+    main::-webkit-scrollbar {
         width: 4px;
     }
-    .title h3{
+
+    .title h3 {
         font-size: 16px;
         margin: var(--margin-small) var(--margin);
     }

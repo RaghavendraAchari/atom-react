@@ -1,14 +1,58 @@
 import "./Photography.scss";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import FeedCard from "../../components/PhotoFeedCard/FeedCard";
 import { useState } from "react";
-import { getAllPhotos } from "../../services/photoServices";
 import LoadingWindow from "../../components/LoadingWindow/LoadingWindow";
 import { getCategoryList } from "../../services/categoryService";
+import albumFeedService from "../../services/albumFeedService";
+import DataNotFound from "../../components/MessageCards/DataNotFound";
+import FilterTab from "./FilterTab/FilterTab";
+
+function parseData(albums) {
+  return albums.map((album) => {
+    return {
+      _id: album._id,
+      date: album.date,
+      title: album.title,
+      description: album.description,
+      photos: album.photos,
+      details: album.details,
+    };
+  });
+}
+
+function paginationReducer(state, action) {
+  switch (action) {
+    case "increment":
+      if (state.currentPage < state.totalPages)
+        return { ...state, currentPage: state.currentPage + 1 }
+      break;
+    case "decrement":
+      if (state.currentPage > 1)
+        return { ...state, currentPage: state.currentPage - 1 }
+      break;
+    case "reset":
+      return { ...state, currentPage: 1, totalPages: 0, totalCount: 0 }
+      break;
+  }
+}
 
 function Photography() {
+  const state = {
+    feedlist: [],
+    filterItemsList: [],
+    categoryList: [],
+    currentPage: 1,
+    totalPages: 0,
+    filteredItem: "All",
+    showFilter: window.innerWidth <= 480 ? false : true,
+    fetchingData: true,
+    dataFetchingError: "",
+  }
+
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
+  const [totalCount, setTotalCount] = useState(0);
   const [filteredItem, setFilteredItem] = useState("All");
   const [showFilter, toggleShowFilter] = useState(
     window.innerWidth <= 480 ? false : true
@@ -19,11 +63,21 @@ function Photography() {
   const [feedList, setFeedList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
 
+  const [pagination, paginationDispatch] = useReducer(paginationReducer, {
+    currentPage: 1,
+    totalPages: 0,
+    totalCount: 0
+  })
+
   // eslint-disable-next-line
   useEffect(() => {
-    if (useEffectRan.current === false) {
-      loadData(currentPage, filteredItem);
+    async function load() {
       loadCategories();
+      loadData(currentPage, filteredItem);
+    }
+
+    if (useEffectRan.current === false) {
+      load();
       return () => (useEffectRan.current = true);
     }
   }, []);
@@ -31,31 +85,29 @@ function Photography() {
   function loadCategories() {
     getCategoryList()
       .then((res) => {
-        setCategoryList((prev) => {
+        setCategoryList(() => {
           return [{ _id: "1", category: "All" }, ...res.data];
         });
         setFilteredItem("All");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setError("Could not load the data");
+      });
   }
 
   function loadData(currentPage, category) {
     setFetchingData(true);
-    getAllPhotos(currentPage, category)
+    albumFeedService.getDataByCategory(currentPage, category)
       .then((res) => {
-        setTotalPage(res.data.totalPages);
-        const list = res.data.albums.map((element) => {
-          const date = new Date(Date.parse(element.date));
+        console.log(res.data);
+        const { albums, currentPage, totalCount, totalPages } = res.data;
 
-          return {
-            id: element.id,
-            date: date.toDateString(),
-            title: element.title,
-            description: element.description,
-            photos: element.photos,
-            details: element.details,
-          };
-        });
+        setTotalPage(totalPages);
+        setTotalCount(totalCount);
+
+        const list = parseData(albums);
+
         setFeedList((prev) => [...prev, ...list]);
         setFetchingData(false);
       })
@@ -69,7 +121,7 @@ function Photography() {
     toggleShowFilter((prev) => !prev);
   };
 
-  const handleFilterItemClick = (e, item) => {
+  function handleFilterItemClick(item) {
     if (item === filteredItem) return;
     setFeedList([]);
     setCurrentPage(1);
@@ -91,64 +143,41 @@ function Photography() {
   };
 
   return (
-    <div className="container">
-      <div className="common-grid">
-        <aside>
-          <div className="filter-tab">
-            <h4 className="filter-title" onClick={handleFilterClick}>
-              Filters : {filteredItem}
-            </h4>
-            {showFilter && (
-              <ul className="filter-list">
-                {categoryList.map((item) => {
-                  return (
-                    <li
-                      key={item._id}
-                      className={`filter-item ${
-                        filteredItem === item.category ? "active" : ""
-                      } `}
-                      onClick={(e) => handleFilterItemClick(e, item.category)}
-                    >
-                      <p>{item.category}</p>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
-        </aside>
-        <main>
-          {fetchingData === false && feedList.length === 0 && (
-            <div className="no-data">No data available</div>
-          )}
-          {feedList.length > 0 &&
-            feedList.map((content) => {
-              return (
-                <FeedCard
-                  key={content.id}
-                  feedDetails={content}
-                  feedType="Photo"
-                />
-              );
-            })}
+    <div className="common-grid">
+      <aside>
+        <FilterTab onFilterItemChanged={handleFilterItemClick} />
+      </aside>
+      <main>
+        {fetchingData === false && feedList.length === 0 && (
+          <div className="no-data">No data available</div>
+        )}
+        {feedList.length > 0 &&
+          feedList.map((album) => {
+            return (
+              <FeedCard
+                key={album._id}
+                feedDetails={album}
+                feedType="Photo"
+              />
+            );
+          })}
 
-          {fetchingData === true && <LoadingWindow showCaption={true} />}
-          {error !== "" && <div className="error">{error}</div>}
-          <div id="list-end">
-            {feedList.length > 0 &&
-              fetchingData === false &&
-              currentPage < totalPage && (
-                <button
-                  disabled={currentPage === totalPage}
-                  className="button"
-                  onClick={handleLoadMore}
-                >
-                  Load More
-                </button>
-              )}
-          </div>
-        </main>
-      </div>
+        {fetchingData === true && <LoadingWindow showCaption={true} />}
+        {error !== "" && <div className="error">{error}</div>}
+        <div id="list-end">
+          {feedList.length > 0 &&
+            fetchingData === false &&
+            currentPage < totalPage && (
+              <button
+                disabled={currentPage === totalPage}
+                className="button"
+                onClick={handleLoadMore}
+              >
+                Load More
+              </button>
+            )}
+        </div>
+      </main>
     </div>
   );
 }

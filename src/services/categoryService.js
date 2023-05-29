@@ -1,16 +1,13 @@
 import axios from "axios";
 // import { USER_TOKEN } from "./authService";
-import {getBaseURL} from './data';
+import { getBaseURL } from './data';
 
 const BASE_URL = getBaseURL();
-const url = BASE_URL + "/api/category";
+const url = BASE_URL + "/api/categories";
 
-
-
-export async function getCategoryList(){
+export async function getCategoryList() {
     return axios.get(url);
 }
 
 
 
- 
