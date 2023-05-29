@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/atom-react/static/css/main.14933c7f.css",
-    "main.js": "/atom-react/static/js/main.e528b53d.js",
-    "static/js/27.8b217c48.chunk.js": "/atom-react/static/js/27.8b217c48.chunk.js",
-    "static/media/photo-background.jpg": "/atom-react/static/media/photo-background.8dca0b1e037ac444d7c2.jpg",
-    "index.html": "/atom-react/index.html"
+    "main.css": "/static/css/main.b19bc923.css",
+    "main.js": "/static/js/main.f8395b52.js",
+    "static/js/27.8b217c48.chunk.js": "/static/js/27.8b217c48.chunk.js",
+    "static/media/photo-background.jpg": "/static/media/photo-background.8dca0b1e037ac444d7c2.jpg",
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.14933c7f.css",
-    "static/js/main.e528b53d.js"
+    "static/css/main.b19bc923.css",
+    "static/js/main.f8395b52.js"
   ]
 }
