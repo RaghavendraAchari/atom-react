@@ -7,6 +7,7 @@ import { getCategoryList } from "../../services/categoryService";
 import albumFeedService from "../../services/albumFeedService";
 import DataNotFound from "../../components/MessageCards/DataNotFound";
 import FilterTab from "./FilterTab/FilterTab";
+import DisplayCard from "../../components/DisplayCard/DisplayCard";
 
 function parseData(albums) {
   return albums.map((album) => {
@@ -38,30 +39,31 @@ function paginationReducer(state, action) {
 }
 
 function Photography() {
-  const state = {
-    feedlist: [],
-    filterItemsList: [],
-    categoryList: [],
-    currentPage: 1,
-    totalPages: 0,
-    filteredItem: "All",
-    showFilter: window.innerWidth <= 480 ? false : true,
-    fetchingData: true,
-    dataFetchingError: "",
-  }
+  // const state = {
+  //   feedlist: [],
+  //   filterItemsList: [],
+  //   categoryList: [],
+  //   currentPage: 1,
+  //   totalPages: 0,
+  //   filteredItem: "All",
+  //   showFilter: window.innerWidth <= 480 ? false : true,
+  //   fetchingData: true,
+  //   dataFetchingError: "",
+  // }
+
+  const [fetchingData, setFetchingData] = useState(true);
+  const [loadingCategories, setLoadingCategories] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
   const [totalCount, setTotalCount] = useState(0);
+
   const [filteredItem, setFilteredItem] = useState("All");
-  const [showFilter, toggleShowFilter] = useState(
-    window.innerWidth <= 480 ? false : true
-  );
   const [error, setError] = useState("");
-  const [fetchingData, setFetchingData] = useState(false);
   const useEffectRan = useRef(false);
   const [feedList, setFeedList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
+  const [showFilter, toggleShowFilter] = useState(window.innerWidth <= 480 ? false : true)
 
   const [pagination, paginationDispatch] = useReducer(paginationReducer, {
     currentPage: 1,
@@ -72,8 +74,8 @@ function Photography() {
   // eslint-disable-next-line
   useEffect(() => {
     async function load() {
-      loadCategories();
       loadData(currentPage, filteredItem);
+      loadCategories();
     }
 
     if (useEffectRan.current === false) {
@@ -83,55 +85,58 @@ function Photography() {
   }, []);
 
   function loadCategories() {
+    setLoadingCategories(true);
+
     getCategoryList()
       .then((res) => {
+        console.log(res.data);
         setCategoryList(() => {
           return [{ _id: "1", category: "All" }, ...res.data];
         });
         setFilteredItem("All");
+        setLoadingCategories(false);
       })
       .catch((err) => {
         console.log(err);
         setError("Could not load the data");
+        setLoadingCategories(false); 
       });
+    
   }
 
   function loadData(currentPage, category) {
     setFetchingData(true);
+
     albumFeedService.getDataByCategory(currentPage, category)
       .then((res) => {
-        console.log(res.data);
-        const { albums, currentPage, totalCount, totalPages } = res.data;
+        const { albums, totalCount, totalPages } = res.data;
 
         setTotalPage(totalPages);
         setTotalCount(totalCount);
 
         const list = parseData(albums);
+        console.log({list});
 
-        setFeedList((prev) => [...prev, ...list]);
+        if(currentPage === 1)
+          setFeedList(list);
+        else
+          setFeedList((prev) => [...prev, ...list]);
+
         setFetchingData(false);
       })
       .catch((e) => {
-        setError("Could not load the data!");
-        setFetchingData(false);
+      setFetchingData(false);
+      setError("Could not load the data!");
       });
   }
 
-  const handleFilterClick = (e) => {
-    toggleShowFilter((prev) => !prev);
-  };
-
-  function handleFilterItemClick(item) {
+  function onCategoryChange(item) {
     if (item === filteredItem) return;
+
     setFeedList([]);
     setCurrentPage(1);
     loadData(1, item);
     setFilteredItem(item);
-
-    if (window.innerWidth <= 480) {
-      toggleShowFilter(false);
-      return;
-    }
   };
 
   const handleLoadMore = (e) => {
@@ -145,7 +150,11 @@ function Photography() {
   return (
     <div className="common-grid">
       <aside>
-        <FilterTab onFilterItemChanged={handleFilterItemClick} />
+        <FilterTab 
+          error={error}
+          loading={loadingCategories} 
+          categoryList={categoryList} 
+          onFilterItemChanged={onCategoryChange} />
       </aside>
       <main>
         {fetchingData === false && feedList.length === 0 && (
@@ -154,7 +163,7 @@ function Photography() {
         {feedList.length > 0 &&
           feedList.map((album) => {
             return (
-              <FeedCard
+              <DisplayCard
                 key={album._id}
                 feedDetails={album}
                 feedType="Photo"

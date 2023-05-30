@@ -2,56 +2,40 @@ import { useEffect, useRef, useState } from "react";
 import DataNotFound from "../../../components/MessageCards/DataNotFound";
 import EmptyList from "../../../components/MessageCards/EmptyList";
 import LoadingWindow from "../../../components/LoadingWindow/LoadingWindow";
-import { getCategoryList } from "../../../services/categoryService";
 
 import Styles from "./FilterTab.module.scss";
 
+function isMobile(){
+    return window.innerWidth <= 480 ? true : false;
+}
 
-export default function FilterTab({ onFilterItemChanged }) {
-    const [fetchingData, setFetchingData] = useState(true);
-    const [categories, setCategories] = useState([]);
-    const [error, setError] = useState(false);
+export default function FilterTab({categoryList, error, loading, onFilterItemChanged }) {
     const [showFilter, toggleShowFilter] = useState(
         window.innerWidth <= 480 ? false : true
     );
-    const [filteredItem, setFilteredItem] = useState("All");
-
-    let useEfectRan = useRef(false).current;
-
-    useEffect(() => {
-        async function load() {
-            getCategoryList()
-                .then(({ data }) => {
-                    setCategories(() => [{ _id: "1", category: "All" }, ...data]);
-                    setFetchingData(false);
-                })
-                .catch(err => {
-                    setError(true);
-                    setFetchingData(false);
-                })
-        }
-
-        if (!useEfectRan) {
-            load();
-
-            return () => useEfectRan = false;
-        }
-
-    }, []);
+    const [selectedNode, setSelectedNode] = useState(0);
 
     const handleFilterClick = (e) => {
         toggleShowFilter((prev) => !prev);
     };
 
+
     function renderFilterItems() {
         return <ul className="filter-list">
-            {categories.map((item) => {
+            {categoryList.map((item, index) => {
                 return (
                     <li
                         key={item._id}
-                        className={`filter-item ${filteredItem === item.category ? "active" : ""
+                        className={`filter-item ${index === selectedNode ? "active" : ""
                             } `}
-                        onClick={() => onFilterItemChanged(item.category)}
+                        onClick={() => {
+                            setSelectedNode(index);
+
+                            if(isMobile())
+                                toggleShowFilter(false);
+
+                            onFilterItemChanged(item.category);
+                        }}
                     >
                         <p>{item.category}</p>
                     </li>
@@ -63,15 +47,15 @@ export default function FilterTab({ onFilterItemChanged }) {
     return (
         <div className="filter-tab">
             <h4 className="filter-title" onClick={handleFilterClick}>
-                Filters : {filteredItem}
+                Filters : {categoryList !== null && categoryList !== undefined && categoryList.length ? categoryList[selectedNode].category : null}
             </h4>
 
-            {error ? (<DataNotFound />) : null}
+            {error !== "" ? (<DataNotFound />) : null}
 
-            {fetchingData ? (<LoadingWindow />) : null}
+            {loading ? (<LoadingWindow />) : null}
 
             {showFilter === true
-                ? (<>{(fetchingData === false && categories.length) === 0 ? <EmptyList /> : renderFilterItems()}</>)
+                ? (<>{(loading === false && categoryList.length) === 0 ? <EmptyList /> : renderFilterItems()}</>)
                 : null}
         </div>);
 

@@ -8,17 +8,6 @@ import { getArtList } from "../../services/artService";
 
 import "./Art.scss";
 
-function mapData(element) {
-  return {
-    id: element.id,
-    originalFileLink: element.originalFileLink,
-    thumbNailUrl: element.thumbnailLink,
-    date: new Date(Date.parse(element.date)).toDateString(),
-    title: element.title,
-    description: element.description,
-  };
-}
-
 function Art() {
   const [fetchingData, setFetchingData] = useState(true);
   const useEffectRan = useRef(false);
@@ -26,13 +15,11 @@ function Art() {
   const [artList, setArtList] = useState([]);
   useEffect(() => {
     if (useEffectRan.current === false) {
-      getArtList().then((res) => {
-        setFetchingData(false);
-        const list = res.data.map((element) => {
-          return mapData(element);
+      getArtList(1)
+        .then((list) => {
+          setFetchingData(false);
+          setArtList(list);
         });
-        setArtList(list);
-      });
 
       return () => (useEffectRan.current = true);
     }
