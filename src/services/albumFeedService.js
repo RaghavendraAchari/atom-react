@@ -10,6 +10,9 @@ export async function getDataByCategory(pageNumber, category) {
     const sortDirection = "asc";
     const sortField = "date";
 
+    if(category === "All")
+        category = "all";
+
     return axios.get(url, {
         params: {
             page: pageNumber,
