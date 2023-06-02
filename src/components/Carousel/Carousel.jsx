@@ -31,7 +31,7 @@ function Carousel(props) {
             <a onClick={onNextClicked} className="image-button right">
               {">"}
             </a> */}
-            <img src={element.originalFileUrl} alt={"Album Photo" + index} />
+            <img src={element.midResUrl} alt={"Album Photo" + index} />
 
             <p id="image-info-text">
               *Only high quality images are shown here. It might take time to
