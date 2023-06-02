@@ -5,7 +5,7 @@ import { getBaseURL } from './data';
 const BASE_URL = getBaseURL();
 
 export async function getDataByCategory(pageNumber, category) {
-    const url = BASE_URL + "/api/albumfeeds/";
+    const url = BASE_URL + "/api/albumfeeds";
     const pageSize = 10;
     const sortDirection = "asc";
     const sortField = "date";
@@ -16,7 +16,7 @@ export async function getDataByCategory(pageNumber, category) {
             size: pageSize,
             sortOrder: sortDirection,
             sortField: sortField,
-            filterBy: category
+            category: category
         }
     })
 }

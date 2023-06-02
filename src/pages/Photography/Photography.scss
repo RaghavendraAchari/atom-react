@@ -1,7 +1,7 @@
 .common-grid {
     display: grid;
     grid-template-areas: "aside main";
-    // grid-auto-columns: 1fr 3fr;
+    grid-template-columns: 1fr 3.5fr;
     grid-auto-flow: column;
     margin-inline: auto;
     width: 90%;
@@ -23,6 +23,11 @@
     }
 }
 
+aside{
+    padding-right: 16px;
+    border-right: 0.5px solid gray;
+}
+
 .no-data {
     text-align: center;
 }
@@ -40,8 +45,8 @@ main {
     padding: var(--margin);
     height: calc(100vh - var(--nav-height));
     overflow: auto;
-    width: 60em;
-    margin: 0 var(--margin);
+    width: 100%;
+    margin: 0 auto;
 
 }
 
@@ -102,6 +107,7 @@ main {
             "main"
             "aside"
         ;
+        grid-template-columns: 100%;
         margin: 0 auto;
         width: 100%;
     }
@@ -118,7 +124,7 @@ main {
         border-right: none;
         border-bottom: 0.5px solid rgba(55, 55, 55, 0.256);
         margin: 0;
-
+        padding: 0;
     }
 
     main {
