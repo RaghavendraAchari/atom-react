@@ -26,6 +26,7 @@ export async function getArtList(page) {
                 photos: [{
                     originalFileUrl: element.originalFileUrl,
                     thumbnailUrl: element.thumbnailUrl,
+                    midResUrl: element.midResUrl
                 }],
                 date: new Date(Date.parse(element.date)).toDateString(),
                 title: element.title,
