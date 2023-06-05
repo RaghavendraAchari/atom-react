@@ -3,8 +3,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import AlbumUploadForm from "../../../components/Forms/AlbumUploadForm/AlbumUploadForm";
 import ArtUploadForm from "../../../components/Forms/ArtUploadForm/ArtUploadForm";
-import { USER_TOKEN } from "../../../services/authService";
+import { USER_TOKEN, validateUser, logout as logoutUser } from "../../../services/authService";
 import "./Operations.scss";
+
+import { toast } from "react-toastify";
 
 function Operations(props) {
   const navigate = useNavigate();
@@ -14,11 +16,22 @@ function Operations(props) {
   useEffect(() => {
     if (token === null || token === undefined) {
       navigate("/admin");
+    }else{
+      validateUser(token)
+        .then((res)=>{
+          if(res.status !== 200){
+            toast.error("Not a valid user. Login Again.")
+            navigate("/admin");
+          }
+        })
+        .catch((err)=> {
+          toast.error("Something went wrong. Try to login again.") 
+          navigate("/admin")
+        });
     }
   });
 
   const [type, setType] = useState("");
-  // const [selectedPhotos] = useState([]);
 
   function handleTypeChange(e) {
     const selected = e.target.value;
@@ -34,30 +47,18 @@ function Operations(props) {
     }
   }
 
-  // function handleSubmit(e) {
-  //   // console.log(e);
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const data = formData.entries();
-  //   // for (const item of formData.values()) {
-  //   //   console.log(item);
-  //   // }
-  //   switch (type) {
-  //     case "Art":
-  //       console.log(data);
-  //       break;
-  //     case "Album":
-  //       console.log(data);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
 
   function logout() {
     if (token !== null && token !== undefined) {
-      sessionStorage.clear();
-      navigate("/admin");
+      logoutUser(token).then(res => {
+        if(res.status === 200){
+          toast.success("Logged out successfully");
+
+          sessionStorage.clear();
+          navigate("/admin");
+        }
+      })
+      .catch( err => toast.error("Something went wrong."))
     }
   }
 

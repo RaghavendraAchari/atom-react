@@ -8,7 +8,9 @@ import {
   validateUser,
 } from "../../../services/authService";
 
+
 import "./Login.scss";
+import { toast } from "react-toastify";
 
 function Login(props) {
   const [error, setError] = useState("");
@@ -27,12 +29,23 @@ function Login(props) {
 
     authenticate(username, password)
       .then((res) => {
-        sessionStorage.setItem(USER_TOKEN, res.data.jwtToken);
         setSigningIn(false);
+
+        if(res.status === 200){
+          sessionStorage.setItem(USER_TOKEN, res.data.accessToken);
+          toast.success("Logged in successfully");
+        }
+        else{
+          setError(res.data.message);
+          return;
+        }
+
         navigate("/admin/operations");
       })
       .catch((res) => {
         setError(res.response.data.message);
+        toast.error("Something went wrong while signing in.")
+
         setSigningIn(false);
       });
   }
@@ -46,14 +59,20 @@ function Login(props) {
           if (res.status === 200) {
             navigate("/admin/operations");
             setSigningIn(false);
+          }else{
+            setError("Login again");
+            setSigningIn(false);
           }
         })
         .catch((e) => {
+          setError("Error in signing in");
           setSigningIn(false);
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit}>
@@ -79,6 +98,7 @@ function Login(props) {
             type="submit"
             className="button"
             id="submit-button"
+            value="Submit"
           />
         </div>
         {signingIn === true && <LoadingWindow />}
