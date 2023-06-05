@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import LoadingWindow from "../../components/LoadingWindow/LoadingWindow";
-import FeedCard from "../../components/PhotoFeedCard/FeedCard";
+import DisplayCard from "../../components/DisplayCard/DisplayCard";
 
 import { getArtList } from "../../services/artService";
 
@@ -36,7 +36,7 @@ function Art() {
       ) : (
         artList.map((element) => {
           return (
-            <FeedCard key={element.id} feedType="Art" feedDetails={element} />
+            <DisplayCard key={element._id} feedType="Art" feedDetails={element} />
           );
         })
       )}
