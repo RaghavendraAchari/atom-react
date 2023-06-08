@@ -9,33 +9,47 @@ import { getArtList } from "../../services/artService";
 import "./Art.scss";
 import CustomButton from "../../components/CustomButton/CustomButton";
 
-import useSWRImmutable from "swr";
+import useSWRInfinite from "swr/infinite";
+
+
 
 function Art() {
   const [page, setPage] = useState(1);
   const [artList, setArtList] = useState([]);
   const [totalCount, setTotalCount] = useState(null);
 
-  const {isLoading, error, data} = useSWRImmutable(
-    [`/arts/`, page],
-    ([key, page]) => getArtList(page)
-  )
+  const getKey = (page) => {
+    page = page + 1;
+
+    return [`/arts/`, page]                    
+  }
+
+  const {isLoading, error, data, size, setSize} = useSWRInfinite(
+    getKey,
+    ([key, page]) => getArtList(page),
+  );
 
   useEffect(() => {
-    if(data !== null && data !== undefined) {
-      if(page === 1){
-        setArtList(data.arts);
-        setTotalCount(data.totalCount)
-      }else{
-        setArtList(prev => [...prev, ...data.arts]);
-        setTotalCount(data.totalCount)
+    if(data !== undefined && data !== null){
+      setArtList(prev => {
+        const list = [];
+        
+        data.map(res => list.push(...res.arts));
+        return list;
+      })
+
+      if(data.length > 0){
+        setTotalCount(data[0].totalCount);
       }
     }
-  },[page, data])
 
-  // console.log({page, isLoading, error, data});
+  }, [data])
+
+  console.log({page,size, isLoading, error, data});
 
   function onLoadMoreClicked(){
+    setSize( size + 1);
+
     if(totalCount > artList.length){
       setPage(prev => prev + 1);
     }
@@ -54,7 +68,7 @@ function Art() {
       }
 
       {isLoading ? <LoadingWindow showCaption={true} /> : null}
-      {!isLoading && error ? <CustomErrorMessage textToDisplay={error} /> : null}
+      {!isLoading && error ? <CustomErrorMessage textToDisplay={error.toString()} /> : null}
       {totalCount !== null && totalCount > artList.length ? <CustomButton title="Load More" onButtonClicked={onLoadMoreClicked}/> : null}
     </div>
   );
