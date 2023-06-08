@@ -1,37 +1,10 @@
 import React from "react";
-import { useState } from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
 import ActionButton from "../ActionButton/ActionButton";
-import LoadingWindow from "../LoadingWindow/LoadingWindow";
 import Styles from "./DisplayCard.module.scss";
 
 function DisplayCard(props) {
     const { feedDetails, feedType } = props;
-    console.log({ feedDetails, feedType });
-    const [photoDetails, setPhotoDetails] = useState([]);
-    const useEfectRan = useRef(false);
-    const [error, setError] = useState("");
-    const [fetchingData, setFetchingData] = useState(true);
-
-    useEffect(() => {
-        if (useEfectRan.current === false) {
-            switch (feedType) {
-                case "Photo":
-                    setPhotoDetails(feedDetails.photos);
-                    setFetchingData(false);
-                    break;
-                case "Art":
-                    setPhotoDetails(feedDetails.photos);
-                    setFetchingData(false);
-                    break;
-                default:
-                    break;
-            }
-
-            return () => (useEfectRan.current = true);
-        }
-    });
+    const photoDetails = feedDetails.photos;
 
     const renderButton = (feedType, feedDetails) => {
         switch (feedType) {
@@ -84,27 +57,26 @@ function DisplayCard(props) {
             <div className="card-text-content">
                 <div className="text-content">
                     <h4 className="card-title">{feedDetails.title}</h4>
-                    {feedDetails.description !== null && (
-                        <p className="desc">{feedDetails.description}</p>
-                    )}
+
+                    { feedDetails.description !== null && <p className="desc">{feedDetails.description}</p> }
+
                     <p className="date">{feedDetails.date}</p>
                 </div>
+
                 <div className="button-container">
                     {renderButton(feedType, feedDetails)}
                 </div>
             </div>
-            <div className="card-photo-content">
-                {fetchingData === true && <LoadingWindow loader="BounceLoader" />}
-                {fetchingData === false && error !== "" && <p>{error}</p>}
-                {fetchingData === false && photoDetails.length > 0 && (
-                    <div className="photos">{renderPhotos()}</div>
-                )}
 
-                {photoDetails.length > 0 && (
+            <div className="card-photo-content">
+                {photoDetails.length > 0 ? <div className="photos">{renderPhotos()}</div> : null}
+
+                {photoDetails.length > 0 ? 
                     <div className="total-holder">
                         <p>{photoDetails.length} photo(s)</p>
-                    </div>
-                )}
+                    </div> 
+                    : null
+                }
             </div>
         </div>
     );

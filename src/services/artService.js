@@ -5,7 +5,7 @@ import { getBaseURL } from './data';
 const BASE_URL = getBaseURL();
 const url = BASE_URL + "/api/arts";
 
-const size = 10;
+const size = 3;
 
 export async function getArtList(page) {
     const params = {
@@ -24,6 +24,7 @@ export async function getArtList(page) {
             return {
                 _id: element._id,
                 photos: [{
+                    _id: 1,
                     originalFileUrl: element.originalFileUrl,
                     thumbnailUrl: element.thumbnailUrl,
                     midResUrl: element.midResUrl
@@ -33,7 +34,10 @@ export async function getArtList(page) {
                 description: element.description,
             };
         });
-        return mappedData;
+        return {
+            ...data,
+            arts: mappedData
+        };
     } catch (e) {
         throw e;
     }

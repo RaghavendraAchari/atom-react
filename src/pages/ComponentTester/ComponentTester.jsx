@@ -3,6 +3,10 @@ import EmptyList from "../../components/MessageCards/EmptyList";
 import ServerConnectionError from "../../components/MessageCards/ServerConnectionError";
 import DisplayCard from "../../components/DisplayCard/DisplayCard";
 import Styles from "./ComponentTester.module.scss";
+import CustomButton from "../../components/CustomButton/CustomButton";
+import { toast } from "react-toastify";
+
+
 
 export default function ComponentTester() {
 
@@ -15,6 +19,9 @@ export default function ComponentTester() {
         </div>
         <div className={Styles.row}>
             <ServerConnectionError />
+        </div>
+        <div className={Styles.row}>
+            <CustomButton title="Load More" onButtonClicked={onLoadMoreClicked} />
         </div>
         <div className={Styles.row}>
             <DisplayCard
@@ -59,4 +66,8 @@ export default function ComponentTester() {
                 feedType="Photo" />
         </div>
     </div>
+}
+
+function onLoadMoreClicked(){
+    toast.success("LoadMore Clicked");
 }
