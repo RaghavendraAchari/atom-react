@@ -75,12 +75,22 @@
 
 @media only screen and (max-width: 480px){
     .artBanner{
-        padding: 16px;
         background-position:  30% ;
         height: 90vh;
         max-height: 90vh;
         display: flex;
         position: relative;
+        .contents{
+            margin-inline: auto;
+            .h1,.p, .buttonWrapper{
+                text-align: center;
+            }
+
+            .buttonWrapper{
+                display: flex;
+                justify-content: center;
+            }
+        }
         .contents{
             position: absolute;
             bottom: 0;

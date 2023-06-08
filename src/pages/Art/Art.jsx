@@ -14,7 +14,7 @@ import useSWRInfinite from "swr/infinite";
 
 
 function Art() {
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [artList, setArtList] = useState([]);
   const [totalCount, setTotalCount] = useState(null);
 
@@ -24,7 +24,7 @@ function Art() {
     return [`/arts/`, page]                    
   }
 
-  const {isLoading, error, data, size, setSize} = useSWRInfinite(
+  const {isLoading, error, data, size, setSize, } = useSWRInfinite(
     getKey,
     ([key, page]) => getArtList(page),
   );
@@ -45,15 +45,9 @@ function Art() {
 
   }, [data])
 
-  console.log({page,size, isLoading, error, data});
+  const loadingMore = size !== data?.length;
 
-  function onLoadMoreClicked(){
-    setSize( size + 1);
-
-    if(totalCount > artList.length){
-      setPage(prev => prev + 1);
-    }
-  }
+  console.log({size, isLoading, loadingMore});
 
   return (
     <div className="art-page avoid-nav">
@@ -67,9 +61,9 @@ function Art() {
         }) : null
       }
 
-      {isLoading ? <LoadingWindow showCaption={true} /> : null}
+      {isLoading || loadingMore ? <LoadingWindow showCaption={true} /> : null}
       {!isLoading && error ? <CustomErrorMessage textToDisplay={error.toString()} /> : null}
-      {totalCount !== null && totalCount > artList.length ? <CustomButton title="Load More" onButtonClicked={onLoadMoreClicked}/> : null}
+      {!loadingMore && totalCount !== null && totalCount > artList.length ? <CustomButton title="Load More" onButtonClicked={() => setSize( size + 1)}/> : null}
     </div>
   );
 }

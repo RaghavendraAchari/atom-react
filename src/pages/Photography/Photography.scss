@@ -24,6 +24,7 @@
 }
 
 aside{
+    grid-area: aside;
     padding-right: 16px;
     border-right: 0.5px solid gray;
 }
@@ -37,8 +38,6 @@ aside{
 
 }
 
-
-
 main {
     justify-self: flex-start;
     grid-area: main;
@@ -49,7 +48,6 @@ main {
     margin: 0 auto;
 
 }
-
 
 .title {
     grid-area: heading;
@@ -103,7 +101,8 @@ main {
 
 @media only screen and (max-width: 480px) {
     .common-grid {
-        grid-template-areas: "heading"
+        grid-template-areas: 
+            "heading"
             "main"
             "aside"
         ;
@@ -124,7 +123,7 @@ main {
         border-right: none;
         border-bottom: 0.5px solid rgba(55, 55, 55, 0.256);
         margin: 0;
-        padding: 0;
+        padding-inline: 16px;
     }
 
     main {
