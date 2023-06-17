@@ -10,8 +10,8 @@ import CategorySelector, {
 } from "../../CategorySelector/CategorySelector";
 import { marked } from "marked";
 
-const UPLOAD_SUCCESS_MSG = "New art has been added successfully";
-const UPLOAD_FILURE_MSG = "Error in uploading new art! Please try again later";
+const UPLOAD_SUCCESS_MSG = "New album has been added successfully";
+const UPLOAD_FILURE_MSG = "Error in uploading new album! Please try again later";
 
 function parseJsonData(dataArray) {
   let data = {};
@@ -72,6 +72,7 @@ function mapData(element, data) {
       break;
   }
 }
+
 
 function AlbumUploadForm() {
   const [photos, setPhotos] = useState([]);
@@ -209,8 +210,9 @@ function AlbumUploadForm() {
         </div>
       </div>
       <ToastContainer />
+      <br />
       <h5>Or manually upload data:</h5>
-      <hr />
+      <br />
       <h5>Add photos of the album :</h5>
       <div className="group">
         <label htmlFor="photos"> Photos :</label>
@@ -234,8 +236,8 @@ function AlbumUploadForm() {
               </div>
             ))
           ) : (
-            <div>
-              <p>No photos selected</p>
+            <div className="empty-photos">
+              <p>No photos added</p>
             </div>
           )}
         </div>

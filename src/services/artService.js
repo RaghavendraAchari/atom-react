@@ -46,7 +46,7 @@ export async function getArtList(page) {
 export async function uploadNewArt(data) {
     let token = sessionStorage.getItem(USER_TOKEN);
     if (token === null || token === undefined)
-        return null;
+        throw Error("No token present");
     token = "Bearer " + token;
     return axios.post(url, data, {
         headers: {
@@ -56,5 +56,30 @@ export async function uploadNewArt(data) {
     });
 }
 
+export async function updateArt(data) {
+    let token = sessionStorage.getItem(USER_TOKEN);
+    if (token === null || token === undefined)
+        throw Error("No token present");
+    token = "Bearer " + token;
+    return axios.put(url+ "/" + data._id, data, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    });
+}
+
+export async function deleteArt(id){
+    let token = sessionStorage.getItem(USER_TOKEN);
+    if (token === null || token === undefined)
+        throw Error("No token present");
+    token = "Bearer " + token;
+    return axios.delete(url + "/" + id , {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    });
+}
 
 

@@ -5,13 +5,14 @@ import DisplayCard from "../../components/DisplayCard/DisplayCard";
 import Styles from "./ComponentTester.module.scss";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import { toast } from "react-toastify";
+import Dashboard from "../Admin/DashBoard/Dashboard";
 
 
 
 export default function ComponentTester() {
 
     return <div className={Styles.wrapper}>
-        <div className={Styles.row}>
+        {/* <div className={Styles.row}>
             <DataNotFound />
         </div>
         <div className={Styles.row}>
@@ -64,6 +65,10 @@ export default function ComponentTester() {
                     }
                 }
                 feedType="Photo" />
+        </div> */}
+
+        <div className={Styles.row} style={{height: '100%'}}>
+            <Dashboard />
         </div>
     </div>
 }

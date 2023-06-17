@@ -31,6 +31,13 @@ body {
 }
 
 :root{
+  scrollbar-face-color: rgb(119, 125, 133); /* Firefox 63 compatibility */
+  scrollbar-track-color: rgb(114, 120, 129) ; /* Firefox 63 compatibility */
+  scrollbar-color: rgb(140, 144, 153) rgb(229, 229, 229);
+  scrollbar-width: thin;
+}
+
+:root{
   --padding:16px;
   --padding-small:8px;
   --font-size: 16px;

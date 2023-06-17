@@ -1,6 +1,9 @@
+.art-section{
+    padding: 16px;
+}
+
 .group{
     .photos{
-        
         p{
             background-color: rgb(246, 177, 177);
             border-radius: 3px;
@@ -56,6 +59,12 @@
 }
 
 @media only screen and (max-width:480px) {
+    .art-section{
+        padding: 16px;
+        form{
+            padding: 8px;
+        }
+    }
     .photos{
         grid-template-columns: 1fr 1fr;
     }
