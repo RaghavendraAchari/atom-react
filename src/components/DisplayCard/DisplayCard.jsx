@@ -5,7 +5,6 @@ import Styles from "./DisplayCard.module.scss";
 function DisplayCard(props) {
     const { feedDetails, feedType } = props;
     const photoDetails = feedDetails.photos;
-
     const renderButton = (feedType, feedDetails) => {
         switch (feedType) {
             case "Photo":
