@@ -1,7 +1,6 @@
 .artBanner{
-    height: 75vh;
-    max-height: 75vh;
-    width: 80%;
+    height: 80vh;
+    max-height: 80vh;
     // background-image: url("./../../../public/assets/art-background.jpg") ;
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,7 +18,10 @@
     align-items: center;
     align-content: center;
     margin: auto;
-    // background-color: aquamarine;
+    margin-inline: 0;
+    padding: 16px;
+    padding-inline: 10% ;
+    background-color: white;
     .decorator{
         display: none;
         opacity: 0.4;
@@ -52,7 +54,7 @@
             transform: translateY(0px);
         }
         50%{
-            transform: translateY(10px);
+            transform: translateY(-10px);
         }
         100%{
             transform: translateY(0px);
@@ -80,6 +82,8 @@
         max-height: 90vh;
         display: flex;
         position: relative;
+        padding-inline: 0;
+        margin-inline: auto;
         .contents{
             margin-inline: auto;
             .h1,.p, .buttonWrapper{
