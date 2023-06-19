@@ -1,6 +1,7 @@
 .dashboard{
+    margin: 16px;
     width: 90%;
-    height: 100%;
+    height: calc(100vh - var(--nav-height));
     margin-inline: auto;
     display: grid;
     grid-template-areas: 
@@ -209,13 +210,15 @@
 
 @media only screen and (max-width: 480px){
     .dashboard{
+        margin: 0;
+        margin-inline: auto;
         grid-template-areas: 
         "select"
         "operation";
         width: 100%;
         grid-template-columns: 100%;
         grid-template-rows: 15% 85%;
-        padding: 0;
+        padding: 16px;
 
         .selectionPane{
             height: 100%;

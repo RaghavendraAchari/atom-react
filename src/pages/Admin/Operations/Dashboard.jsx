@@ -10,10 +10,10 @@ import { toast } from "react-toastify";
 
 function Operations(props) {
   const navigate = useNavigate();
-  const token = sessionStorage.getItem(USER_TOKEN);
 
   //redirect  to login if no session found
   useEffect(() => {
+    const token = sessionStorage.getItem(USER_TOKEN);
     if (token === null || token === undefined) {
       navigate("/admin");
     }else{
@@ -49,6 +49,7 @@ function Operations(props) {
 
 
   function logout() {
+    const token = sessionStorage.getItem(USER_TOKEN);
     if (token !== null && token !== undefined) {
       logoutUser(token).then(res => {
         if(res.status === 200){

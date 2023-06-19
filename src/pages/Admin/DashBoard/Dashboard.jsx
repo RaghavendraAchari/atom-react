@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+
 import Styles from "./Dashboard.module.scss";
 import AlbumUploadForm from "../../../components/Forms/AlbumUploadForm/AlbumUploadForm";
 import ArtUploadForm, {STATES} from "../../../components/Forms/ArtUploadForm/ArtUploadForm";
 import adminService from "../../../services/adminService";
+
+import { USER_TOKEN, validateUser, logout as logoutUser } from "../../../services/authService";
+
 import useSWR from "swr";
 
 import { deleteArt } from "../../../services/artService";
 import { toast } from "react-toastify";
 
 export default function Dashboard(){
+    const navigate = useNavigate();
+
     const types = ["Art", "Photography"]
     const [state, setState] = useState(types[0]);
 
@@ -20,7 +27,6 @@ export default function Dashboard(){
     const { data: artsResponse , error:artError , isLoading: artLoading, mutate: refetchArts} = useSWR("admin/arts", adminService.getAllArts);
     const { data: albumResponse , error: albumError , isLoading: albumLoading} = useSWR("admin/albumfeeds", adminService.getAllAlbumFeeds);
 
-    console.log(artsResponse, albumResponse);
     function onArtEditClick(e, art){
         e.preventDefault();
 
@@ -40,6 +46,40 @@ export default function Dashboard(){
             }
         }).catch(err => toast.error("Erro in deleting the art"));
     }
+
+    function logout() {
+        const token = sessionStorage.getItem(USER_TOKEN);
+        if (token !== null && token !== undefined) {
+            logoutUser(token).then(res => {
+            if(res.status === 200){
+                toast.success("Logged out successfully");
+
+                sessionStorage.clear();
+                navigate("/admin");
+            }
+            })
+            .catch( err => toast.error("Something went wrong."))
+        }
+    }
+
+    useEffect(() => {
+    const token = sessionStorage.getItem(USER_TOKEN);
+    if (token === null || token === undefined) {
+        navigate("/admin");
+    }else{
+        validateUser(token)
+        .then((res)=>{
+            if(res.status !== 200){
+            toast.error("Not a valid user. Login Again.")
+            navigate("/admin");
+            }
+        })
+        .catch((err)=> {
+            toast.error("Something went wrong. Try to login again.") 
+            navigate("/admin")
+        });
+    }
+    });
 
     return <div className={Styles.dashboard}>
         <div className={Styles.selectionPane}>
