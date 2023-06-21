@@ -6,14 +6,14 @@ const BASE_URL = getBaseURL();
 
 export async function getDataByCategory(pageNumber, category) {
     const url = BASE_URL + "/api/albumfeeds";
-    const pageSize = 10;
-    const sortDirection = "asc";
+    const pageSize = 3;
+    const sortDirection = "desc";
     const sortField = "date";
 
     if(category === "All")
         category = "all";
 
-    return axios.get(url, {
+    const response = await axios.get(url, {
         params: {
             page: pageNumber,
             size: pageSize,
@@ -21,7 +21,10 @@ export async function getDataByCategory(pageNumber, category) {
             sortField: sortField,
             category: category
         }
-    })
+    });
+    if(response.status === 200){
+        return response.data;
+    }
 }
 
 export async function postAlbumFeed(data) {

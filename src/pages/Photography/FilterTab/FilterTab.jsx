@@ -13,16 +13,24 @@ export default function FilterTab({categoryList, error, loading, onFilterItemCha
     const [showFilter, toggleShowFilter] = useState(
         window.innerWidth <= 480 ? false : true
     );
+
+    const [categories] = useState(() => (categoryList !== undefined && categoryList !== null) ? [
+        {
+            _id: 1,
+            category: "All"
+        },
+        ...categoryList
+    ]: []);
+
     const [selectedNode, setSelectedNode] = useState(0);
 
     const handleFilterClick = (e) => {
         toggleShowFilter((prev) => !prev);
     };
 
-
     function renderFilterItems() {
         return <ul className="filter-list">
-            {categoryList.map((item, index) => {
+            {categories.map((item, index) => {
                 return (
                     <li
                         key={item._id}
@@ -47,15 +55,15 @@ export default function FilterTab({categoryList, error, loading, onFilterItemCha
     return (
         <div className="filter-tab">
             <h4 className="filter-title" onClick={handleFilterClick}>
-                Filters : {categoryList !== null && categoryList !== undefined && categoryList.length ? categoryList[selectedNode].category : null}
+                Filters : {categories.length ? categories[selectedNode].category : null}
             </h4>
 
-            {error !== "" ? (<DataNotFound />) : null}
+            {error ? (<DataNotFound />) : null}
 
             {loading ? (<LoadingWindow />) : null}
 
             {showFilter === true
-                ? (<>{(loading === false && categoryList.length) === 0 ? <EmptyList /> : renderFilterItems()}</>)
+                ? (<>{(loading === false && categories.length) === 0 ? <EmptyList /> : renderFilterItems()}</>)
                 : null}
         </div>);
 
