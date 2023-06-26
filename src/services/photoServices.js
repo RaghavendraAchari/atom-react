@@ -15,12 +15,13 @@ export async function getIndividualPhoto(id) {
 }
 
 export async function postAlbumFeed(data) {
-    const url = BASE_URL + "/api/albumfeed";
+    const url = BASE_URL + "/api/albumfeeds";
     let token = sessionStorage.getItem(USER_TOKEN);
     if (token === null || token === undefined)
         throw new Error("Token Error");
 
     token = "Bearer " + token;
+    console.log(data);
     return axios.post(url, data, {
         headers: {
             'Content-Type': 'application/json',

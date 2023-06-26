@@ -76,17 +76,14 @@ function mapData(element, data) {
 
 function AlbumUploadForm() {
   const [photos, setPhotos] = useState([]);
-  const [thumbNailUrl, setThumbnailUrl] = useState("");
-  const [originalFileUrl, setOriginalFileUrl] = useState("");
+  const photoFormRef = useRef(null);
+  
   const date = new Date(Date.now());
   const options = {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   };
-  const [dateFormat, setDate] = useState(
-    Intl.DateTimeFormat("fr-CA", options).format(date)
-  );
   const [albumDate, setalbumDate] = useState(
     Intl.DateTimeFormat("fr-CA", options).format(date)
   );
@@ -97,26 +94,64 @@ function AlbumUploadForm() {
 
   function handleAddPhoto() {
     const photo = {};
-    photo["thumbNailUrl"] = thumbNailUrl;
-    photo["originalFileUrl"] = getDriveViewLink(originalFileUrl);
-    photo["date"] = new Date(Date.parse(dateFormat)).toISOString();
+    const form = photoFormRef.current;
+
+    photo.thumbnailUrl = form['thumbNailUrl'].value;
+    photo.originalFileUrl = form['originalFileUrl'].value;
+    photo.midResUrl = form['midResUrl'].value;
+    photo.date = form['date'].valueAsDate;
 
     if (
-      !(thumbNailUrl.startsWith("https") || thumbNailUrl.startsWith("http"))
+      !(photo.thumbnailUrl.startsWith("https") || photo.thumbnailUrl.startsWith("http"))
     ) {
       alert("Thumbnail link must start with either 'http://' or 'https://'");
       photoFormRef.current["thumbNailUrl"].focus();
       photoFormRef.current.scrollIntoView();
     } else {
       setPhotos((prev) => [...prev, photo]);
-      // setDate(Intl.DateTimeFormat("fr-CA", options).format(date));
-      setOriginalFileUrl("");
-      setThumbnailUrl("");
       photoFormRef.current.style.border = "";
+      form.reset();
     }
   }
 
-  const photoFormRef = useRef(null);
+  function handleOnSave(e){
+    e.preventDefault();
+
+    if (photos.length === 0) {
+      if (photoFormRef.current) {
+        photoFormRef.current.focus();
+        photoFormRef.current.scrollIntoView();
+        photoFormRef.current.style.border = "1px solid black";
+      }
+      return;
+    }
+    
+    const form = new FormData(e.target.form);
+    const date = new Date(Date.parse(albumDate)).toISOString();
+    const title = form.get("title");
+    const description = form.get("shortDescription");
+    const details = form.get("description");
+    const uploadData = {
+      date,
+      title,
+      description,
+      photos,
+      details,
+      category: selectedItems,
+      publishable: false
+    };
+
+    setUploading(true);
+    postAlbumFeed(uploadData)
+      .then((res) => {
+        setUploading(false);
+        toast.success("Data Saved Successfully");
+      })
+      .catch((err) => {
+        toast.error("Error in saving data!");
+        setUploading(false);
+      });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -142,6 +177,7 @@ function AlbumUploadForm() {
       photos,
       details,
       category: selectedItems,
+      publishable: false
     };
 
     setUploading(true);
@@ -204,7 +240,7 @@ function AlbumUploadForm() {
   return (
     <div className="art-section">
       <div className="md-container">
-        <h5>Upload MD file</h5>
+        <h5>Upload MD file (Not Working)</h5>
         <div className="group">
           <input type="file" name="md" id="md" onChange={(e) => parseMd(e)} />
         </div>
@@ -228,7 +264,7 @@ function AlbumUploadForm() {
                   <span onClick={() => deletePhoto(index)}>x</span>
                 </div>
                 <img
-                  src={element.thumbNailUrl}
+                  src={element.thumbnailUrl}
                   alt="Preview"
                   rel="noreferrer noopener"
                   referrerPolicy="no-referrer"
@@ -261,8 +297,17 @@ function AlbumUploadForm() {
               pattern="https?://.+"
               title="Enter a valid url"
               placeholder="Low res link (must start with https://)"
-              value={thumbNailUrl}
-              onChange={(e) => setThumbnailUrl(e.target.value)}
+              defaultValue=""
+            />
+          </div>
+          <div className="group">
+            <label htmlFor="midResUrl">Mid Res URL :</label>
+            <input
+              name="midResUrl"
+              id="midResUrl"
+              type="url"
+              placeholder="Mid Res Url"
+              defaultValue=""
             />
           </div>
           <div className="group">
@@ -270,10 +315,9 @@ function AlbumUploadForm() {
             <input
               name="originalFileUrl"
               id="originalFileUrl"
-              type="text"
-              placeholder="Original Id of the image"
-              value={originalFileUrl}
-              onChange={(e) => setOriginalFileUrl(e.target.value)}
+              type="url"
+              placeholder="Url for the original image"
+              defaultValue=""
             />
           </div>
           <div className="group">
@@ -281,14 +325,7 @@ function AlbumUploadForm() {
             <input
               name="date"
               type="date"
-              value={dateFormat}
-              onChange={(e) =>
-                setDate(
-                  Intl.DateTimeFormat("fr-CA", options).format(
-                    e.target.valueAsDate
-                  )
-                )
-              }
+              defaultValue={new Date().toISOString().substring(0, 10)}
             />
           </div>
           <div className="group">
@@ -350,6 +387,7 @@ function AlbumUploadForm() {
           ></textarea>
         </div>
         <div className="group">
+          <input type="button" onClick={handleOnSave} value="Save" />
           <input type="submit" value="Submit" />
         </div>
       </form>
