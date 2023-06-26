@@ -1,6 +1,7 @@
 import React from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import Styles from "./DisplayCard.module.scss";
+import { getReadableDate } from "../../utils/dateUtils";
 
 function DisplayCard(props) {
     const { feedDetails, feedType } = props;
@@ -59,7 +60,7 @@ function DisplayCard(props) {
 
                     { feedDetails.description !== null && <p className="desc">{feedDetails.description}</p> }
 
-                    <p className="date">{feedDetails.date}</p>
+                    <p className="date">{getReadableDate(feedDetails.date)}</p>
                 </div>
 
                 <div className="button-container">

@@ -2,6 +2,7 @@ import { useLocation } from "react-router";
 import Carousel from "../../../components/Carousel/Carousel";
 import { LINE_SPLIT } from "../../../services/data";
 import "./ArtDetails.scss";
+import { getReadableDate } from "../../../utils/dateUtils";
 
 function ArtDetails(props) {
   const location = useLocation();
@@ -12,7 +13,7 @@ function ArtDetails(props) {
     <div id="art-details-page" className="avoid-nav">
       <div className="top-contents">
         <h2 className="title">{feedDetails.title}</h2>
-        <h4 className="date">{feedDetails.date}</h4>
+        <h4 className="date">{getReadableDate(feedDetails.date)}</h4>
         {description.map((element, index) => (
           <p key={index} className="short-desc indent reading-text">
             {element}

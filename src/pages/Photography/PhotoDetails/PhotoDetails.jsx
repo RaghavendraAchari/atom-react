@@ -2,6 +2,7 @@ import "./PhotoDetails.scss";
 import { useLocation } from "react-router";
 import Carousel from "../../../components/Carousel/Carousel";
 import { LINE_SPLIT } from "../../../services/data";
+import { getReadableDate } from "../../../utils/dateUtils";
 
 function PhotoDetails(props) {
   const location = useLocation();
@@ -12,7 +13,7 @@ function PhotoDetails(props) {
     <div id="photo-details-page" className="avoid-nav">
       <div className="top-contents">
         <h2 className="title">{feedDetails.title}</h2>
-        <h4 className="date">{feedDetails.date}</h4>
+        <h4 className="date">{getReadableDate(feedDetails.date)}</h4>
         <p className="short-desc indent reading-text">
           {feedDetails.description}{" "}
         </p>
