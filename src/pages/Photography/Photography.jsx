@@ -60,11 +60,11 @@ function Photography() {
   return (
     <div className="common-grid">
       <aside>
-        {categoryData ? <FilterTab 
+        <FilterTab 
           error={categoryError}
           loading={isCategoriesLoading && !categoryError && !categoryData}
-          categoryList={categoryData.data} 
-          onFilterItemChanged={onCategoryChange} />: null}
+          categoryList={categoryData ? categoryData.data : null} 
+          onFilterItemChanged={onCategoryChange} />
       </aside>
       <main>
         {!isLoadingAlbums && !loadingMore && feedList.length === 0 && (

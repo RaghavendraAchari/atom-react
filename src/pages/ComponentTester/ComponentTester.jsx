@@ -7,6 +7,7 @@ import CustomButton from "../../components/CustomButton/CustomButton";
 import { toast } from "react-toastify";
 import Dashboard from "../Admin/DashBoard/Dashboard";
 import TextEditor from "../../components/TextEditor/TextEditor";
+import ThumbnailRenderer from "../../components/ThumbnailRenderer/ThubmnailRenderer";
 
 function onSave(){
 
@@ -16,7 +17,7 @@ export default function ComponentTester() {
 
     return <div className={Styles.wrapper}>
         <div className={Styles.row}>
-            <TextEditor  id="textEditor1" onSave={onSave}/>
+            <ThumbnailRenderer/>
         </div>
     </div>
 }

@@ -5,9 +5,10 @@
     margin-inline: auto;
     display: grid;
     grid-template-areas: 
-    "select operation";
+    "select operation"
+    ". logout";
     grid-template-columns: 30% 70%;
-    grid-template-rows: 100%;
+    grid-template-rows: 90% 10% ;
     gap: 8px;
 
     .selectionPane{
@@ -59,6 +60,14 @@
             display: flex;
             flex-direction: column;
         }
+    }
+    .group{
+        grid-area: logout;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -214,10 +223,11 @@
         margin-inline: auto;
         grid-template-areas: 
         "select"
-        "operation";
+        "operation"
+        "logout";
         width: 100%;
         grid-template-columns: 100%;
-        grid-template-rows: 15% 85%;
+        grid-template-rows: 15% 75% 10%;
         padding: 16px;
 
         .selectionPane{
@@ -242,6 +252,15 @@
             max-width: 100%;
             overflow: auto;
             
+        }
+        .group{
+            grid-area: logout;
+            width: 100%;
+            height: 100%;
+            button{
+                padding: 4px 16px;
+                font-size: 14px;
+            }
         }
     }
 }

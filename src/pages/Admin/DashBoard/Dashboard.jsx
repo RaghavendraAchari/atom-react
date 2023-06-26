@@ -174,6 +174,10 @@ export default function Dashboard(){
                 </div>
                 
             }
+            
+        </div>
+        <div className={`group ${Styles.group}`}>
+            <button className="button" onClick={logout}>Log out</button>
         </div>
     </div>
 }

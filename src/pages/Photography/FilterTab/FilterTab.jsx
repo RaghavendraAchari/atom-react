@@ -13,18 +13,23 @@ export default function FilterTab({categoryList, error, loading, onFilterItemCha
     const [showFilter, toggleShowFilter] = useState(
         window.innerWidth <= 480 ? false : true
     );
-
-    const [categories] = useState(() => (categoryList !== undefined && categoryList !== null) ? [
-        {
-            _id: 1,
-            category: "All"
-        },
-        ...categoryList
-    ]: []);
-
+    const [categories, setCategories] = useState([]);
     const [selectedNode, setSelectedNode] = useState(0);
 
+    useEffect(()=>{
+        if(categoryList){
+            setCategories([{
+                _id: 1,
+                category: "All"
+            },
+            ...categoryList]);
+        }
+    },[categoryList]);
+
     const handleFilterClick = (e) => {
+        if(!isMobile())
+            return toggleShowFilter(true);
+
         toggleShowFilter((prev) => !prev);
     };
 
