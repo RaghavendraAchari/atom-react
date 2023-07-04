@@ -6,7 +6,7 @@ const BASE_URL = getBaseURL();
 
 export async function getDataByCategory(pageNumber, category) {
     const url = BASE_URL + "/api/albumfeeds";
-    const pageSize = 3;
+    const pageSize = 10;
     const sortDirection = "desc";
     const sortField = "date";
 

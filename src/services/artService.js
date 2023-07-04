@@ -5,7 +5,7 @@ import { getBaseURL } from './data';
 const BASE_URL = getBaseURL();
 const url = BASE_URL + "/api/arts";
 
-const size = 4;
+const size = 10;
 
 export async function getArtList(page) {
     const params = {
