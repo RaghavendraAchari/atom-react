@@ -1,0 +1,52 @@
+//for header
+.sticky {
+    position: sticky;
+    top: 0;
+    padding: 16px;
+
+    background-color: white;
+    border-radius: 0 16px 0 0;
+    margin-bottom: 2px;
+    border-bottom: 0.5px solid rgb(182, 182, 182);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        box-sizing: content-box;
+        padding: 8px;
+        border: none;
+        background-color: white;
+        cursor: pointer;
+        width: 10em;
+
+        &.active {
+            color: rgb(59, 61, 71);
+            border-bottom: 0.5px solid rgb(59, 61, 71);
+            font-weight: bold;
+            transition: all 0.2s ease-in-out;
+        }
+
+        &:hover {
+            background-color: rgb(201, 222, 229);
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .sticky {
+        border-radius: 16px 16px 0 0;
+
+        div {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+
+            button {
+                width: fit-content;
+            }
+        }
+    }
+}

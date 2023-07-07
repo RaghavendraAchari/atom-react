@@ -10,7 +10,7 @@ export async function getDataByCategory(pageNumber, category) {
     const sortDirection = "desc";
     const sortField = "date";
 
-    if(category === "All")
+    if (category === "All")
         category = "all";
 
     const response = await axios.get(url, {
@@ -22,7 +22,7 @@ export async function getDataByCategory(pageNumber, category) {
             category: category
         }
     });
-    if(response.status === 200){
+    if (response.status === 200) {
         return response.data;
     }
 }
@@ -43,7 +43,51 @@ export async function postAlbumFeed(data) {
 
 }
 
+export async function deleteAlbumFeed(album) {
+    const url = BASE_URL + "/api/albumfeeds" + "/" + album._id;
+    let token = sessionStorage.getItem(USER_TOKEN);
+    if (token === null || token === undefined)
+        throw new Error("Token Error");
+
+    token = "Bearer " + token;
+    const response = await axios.delete(url, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+
+    if (response.status === 200 && response.data) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+export async function updateAlbumFeed(album) {
+    const url = BASE_URL + "/api/albumfeeds" + "/" + album._id;
+    let token = sessionStorage.getItem(USER_TOKEN);
+    if (token === null || token === undefined)
+        throw new Error("Token Error");
+
+    token = "Bearer " + token;
+    const response = await axios.put(url, album, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+    })
+
+    if (response.status === 200 && response.data) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 export default {
     getDataByCategory,
-    postAlbumFeed
+    postAlbumFeed,
+    deleteAlbumFeed,
+    updateAlbumFeed
 }

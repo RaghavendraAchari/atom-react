@@ -6,7 +6,11 @@ const BASE_URL = getBaseURL();
 const url = BASE_URL + "/api/categories";
 
 export async function getCategoryList() {
-    return axios.get(url);
+    const response = await axios.get(url);
+    if (response.status === 200) {
+        return response.data
+    }
+    else throw Error();
 }
 
 

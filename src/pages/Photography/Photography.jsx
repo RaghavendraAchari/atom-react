@@ -63,7 +63,7 @@ function Photography() {
         <FilterTab 
           error={categoryError}
           loading={isCategoriesLoading && !categoryError && !categoryData}
-          categoryList={categoryData ? categoryData.data : null} 
+          categoryList={categoryData ? categoryData : null} 
           onFilterItemChanged={onCategoryChange} />
       </aside>
       <main>
