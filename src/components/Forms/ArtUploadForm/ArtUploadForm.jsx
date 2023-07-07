@@ -19,14 +19,6 @@ function ArtUploadForm({state, data, onUpdate}) {
     state = STATES.new;
 
   const [isUploading, setUploading] = useState(false);
-  // const options = {
-  //   year: "numeric",
-  //   month: "2-digit",
-  //   day: "2-digit",
-  // };
-  // const [date] = useState(
-  //   Intl.DateTimeFormat("fr-CA", options).format(Date.now())
-  // );
   
   function handleSubmit(e) {
     e.preventDefault();

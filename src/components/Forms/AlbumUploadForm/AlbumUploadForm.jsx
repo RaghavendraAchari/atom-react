@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { postAlbumFeed } from "../../../services/photoServices";
 import { getDriveViewLink, getSmallPreviewUrl } from "../../../services/utils";
@@ -8,7 +8,6 @@ import "./AlbumUploadForm.scss";
 import CategorySelector, {
   useCategory,
 } from "../../CategorySelector/CategorySelector";
-import { marked } from "marked";
 
 const UPLOAD_SUCCESS_MSG = "New album has been added successfully";
 const UPLOAD_FILURE_MSG = "Error in uploading new album! Please try again later";
@@ -73,24 +72,29 @@ function mapData(element, data) {
   }
 }
 
+export const STATES = {
+  new: "NEW",
+  edit: "EDIT"
+}
 
-function AlbumUploadForm() {
-  const [photos, setPhotos] = useState([]);
-  const photoFormRef = useRef(null);
-  
-  const date = new Date(Date.now());
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  };
-  const [albumDate, setalbumDate] = useState(
-    Intl.DateTimeFormat("fr-CA", options).format(date)
-  );
+function AlbumUploadForm({state, data}) {
+  if(state === null || state === undefined)
+    state = STATES.new;
 
+  const [photos, setPhotos] = useState(state === STATES.edit && data ? data.photos : []);
   const [isUploading, setUploading] = useState(false);
   const { categories, selectedItems, setCategories, setSelectedItems } =
-    useCategory();
+  useCategory();
+
+  useEffect(()=>{
+    if(state === STATES.edit){
+      if(data !== undefined && data !== null){
+        setSelectedItems(data.category);
+      }
+    }
+  },[data]);
+  
+  const photoFormRef = useRef(null);
 
   function handleAddPhoto() {
     const photo = {};
@@ -126,11 +130,11 @@ function AlbumUploadForm() {
       return;
     }
     
-    const form = new FormData(e.target.form);
-    const date = new Date(Date.parse(albumDate)).toISOString();
-    const title = form.get("title");
-    const description = form.get("shortDescription");
-    const details = form.get("description");
+    const form = e.target.form;
+    const date = form['albumDate'].valueAsDate;
+    const title = form["title"].value;
+    const description = form["shortDescription"].value;
+    const details = form["description"].value;
     const uploadData = {
       date,
       title,
@@ -151,6 +155,46 @@ function AlbumUploadForm() {
         toast.error("Error in saving data!");
         setUploading(false);
       });
+    // console.log({uploadData});
+  }
+
+  function handleOnUpdate(e){
+    e.preventDefault();
+
+    if (photos.length === 0) {
+      if (photoFormRef.current) {
+        photoFormRef.current.focus();
+        photoFormRef.current.scrollIntoView();
+        photoFormRef.current.style.border = "1px solid black";
+      }
+      return;
+    }
+    
+    const form = e.target.form;
+    const date = form['albumDate'].valueAsDate;
+    const title = form["title"].value;
+    const description = form["shortDescription"].value;
+    const details = form["description"].value;
+    const uploadData = {
+      date,
+      title,
+      description,
+      photos,
+      details,
+      category: selectedItems,
+      publishable: true
+    };
+
+    setUploading(true);
+    postAlbumFeed(uploadData)
+      .then((res) => {
+        setUploading(false);
+        toast.success("Data Updated Successfully");
+      })
+      .catch((err) => {
+        toast.error("Error in Updating data!");
+        setUploading(false);
+      });
   }
 
   function handleSubmit(e) {
@@ -165,11 +209,11 @@ function AlbumUploadForm() {
       return;
     }
 
-    const form = new FormData(e.target);
-    const date = new Date(Date.parse(albumDate)).toISOString();
-    const title = form.get("title");
-    const description = form.get("shortDescription");
-    const details = form.get("description");
+    const form = e.target.form;
+    const date = form['albumDate'].valueAsDate;
+    const title = form["title"].value;
+    const description = form["shortDescription"].value;
+    const details = form["description"].value;
     const uploadData = {
       date,
       title,
@@ -202,47 +246,13 @@ function AlbumUploadForm() {
     setPhotos(list);
   }
 
-  function parseMd(e) {
-    e.preventDefault();
-    const file = e.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = async (data) => {
-      let content = data.target.result;
-      let tokens = marked.lexer(content);
-      console.log(tokens);
-      const parsedData = parseJsonData(tokens);
-      setPhotos(parsedData.photos);
-      const form = document.forms["detailsForm"];
-
-      setalbumDate(
-        Intl.DateTimeFormat("fr-CA", options).format(new Date(parsedData.date))
-      );
-      form.elements["title"].value = parsedData.title;
-      form.elements["shortDescription"].value = parsedData.shortDescription;
-      form.elements["description"].value = parsedData.description;
-
-      if (
-        parsedData.category.every((element) => {
-          return categories.includes(element);
-        })
-      ) {
-        setSelectedItems(parsedData.category);
-      } else {
-        return toast.error("Categories are invalid");
-      }
-
-      toast.success("Successfully parsed contents");
-    };
-
-    reader.readAsBinaryString(file);
-  }
   return (
     <div className="art-section">
       <div className="md-container">
         <h5>Upload MD file (Not Working)</h5>
         <div className="group">
-          <input type="file" name="md" id="md" onChange={(e) => parseMd(e)} />
+          <input type="file" name="md" id="md" onChange={(e) => {}} />
         </div>
       </div>
       <ToastContainer />
@@ -278,6 +288,7 @@ function AlbumUploadForm() {
           )}
         </div>
       </div>
+
       <form
         ref={photoFormRef}
         style={{
@@ -343,6 +354,7 @@ function AlbumUploadForm() {
             placeholder="Title to be displayed"
             type="text"
             required
+            defaultValue={state === STATES.edit ? null : null}
           />
         </div>
         <div className="group">
@@ -350,14 +362,7 @@ function AlbumUploadForm() {
           <input
             name="albumDate"
             type="date"
-            value={albumDate}
-            onChange={(e) =>
-              setalbumDate(
-                Intl.DateTimeFormat("fr-CA", options).format(
-                  e.target.valueAsDate
-                )
-              )
-            }
+            defaultValue={state === STATES.edit ? data.date.substring(0, 10) :new Date().toISOString().substring(0, 10)}
           />
         </div>
         <div className="group">
@@ -375,6 +380,7 @@ function AlbumUploadForm() {
             name="shortDescription"
             placeholder="Short description of the album..."
             required
+            defaultValue={state === STATES.edit ? null : null}
           ></textarea>
         </div>
 
@@ -384,10 +390,11 @@ function AlbumUploadForm() {
             name="description"
             placeholder="Full details about of the album..."
             required
+            defaultValue={state === STATES.edit ? null : null}
           ></textarea>
         </div>
         <div className="group">
-          <input type="button" onClick={handleOnSave} value="Save" />
+          {state === STATES.edit ? <input type="button" onClick={handleOnUpdate} value="Update & Save" /> : <input type="button" onClick={handleOnSave} value="Save" />}
           <input type="submit" value="Submit" />
         </div>
       </form>
