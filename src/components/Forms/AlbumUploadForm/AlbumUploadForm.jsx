@@ -319,12 +319,12 @@ function AlbumUploadForm({ state, data, onComplete }) {
         </div>
         <div className="group">
           <label htmlFor="category"> Category : *</label>
-          <CategoryPicker
+          { categoryList ? <CategoryPicker
             categories={categoryList.map(category => category.category)}
             preSelected={state === OperationStates.edit ? data.category : null}
             selected={selectedCategories}
             setSelected={setSelectedCategories}
-          />
+          />: null}
         </div>
         <div className="group">
           <label htmlFor="shortDescription"> Short Description :</label>
